@@ -21,6 +21,7 @@ public class Control_Salones {
         System.out.println("Hola soy Jonathan");
         //Prueba 2
         System.out.println("Hola soy Jonathan");
+        
     }
     
 }
