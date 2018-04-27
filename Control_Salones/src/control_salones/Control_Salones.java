@@ -17,6 +17,10 @@ public class Control_Salones {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("Hola soy José María");
+        //Prueba 1
+        System.out.println("Hola soy Jonathan");
+        //Prueba 2
+        System.out.println("Hola soy Jonathan");
     }
     
 }
