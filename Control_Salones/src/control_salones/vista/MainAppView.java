@@ -5,9 +5,16 @@
  */
 package control_salones.vista;
 
+import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -40,6 +47,7 @@ public class MainAppView extends javax.swing.JFrame {
         menuBtnCarreras = new javax.swing.JMenuItem();
         menuBtnCatalogoEventos = new javax.swing.JMenuItem();
         menuBtnInstructores = new javax.swing.JMenuItem();
+        menuBtnSalones = new javax.swing.JMenuItem();
         menuBtnAsignacionAulas = new javax.swing.JMenuItem();
         menuReportes = new javax.swing.JMenu();
         menuBtnReporteSemanalSalon = new javax.swing.JMenuItem();
@@ -86,6 +94,9 @@ public class MainAppView extends javax.swing.JFrame {
 
         menuBtnInstructores.setText("Instructores");
         menuUsarios.add(menuBtnInstructores);
+
+        menuBtnSalones.setText("Salones");
+        menuUsarios.add(menuBtnSalones);
 
         menuBtnAsignacionAulas.setText("Asignación Aulas");
         menuUsarios.add(menuBtnAsignacionAulas);
@@ -155,11 +166,11 @@ public class MainAppView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 654, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 412, Short.MAX_VALUE)
+            .addGap(0, 379, Short.MAX_VALUE)
         );
 
         pack();
@@ -215,9 +226,13 @@ public class MainAppView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 MainAppView view = new MainAppView();
+                view.setLayout(new BorderLayout());
+                view.setContentPane(new JLabel(new ImageIcon(getClass().getResource("/control_salones/image/fondo_Main.png"))));
                 view.setVisible(true);
                 view.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                
                 
             }
         });
@@ -241,6 +256,7 @@ public class MainAppView extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuBtnReporteInstructor;
     private javax.swing.JMenuItem menuBtnReporteSemanalSalon;
     private javax.swing.JMenuItem menuBtnSalir;
+    private javax.swing.JMenuItem menuBtnSalones;
     private javax.swing.JMenuItem menuBtnUsuarios;
     private javax.swing.JMenu menuConfiguracion;
     private javax.swing.JMenu menuReportes;
@@ -264,5 +280,21 @@ public class MainAppView extends javax.swing.JFrame {
         }
         
     };
+    
+    static class PanelFondo extends JPanel{
+
+        public PanelFondo() {
+            
+        }
+
+        @Override
+        protected void paintComponent(Graphics grphcs) {
+             Image fondo = new ImageIcon(getClass().getResource("/control_salones/image/fondo_Main.png")).getImage();
+             grphcs.drawImage(fondo, 600, 400, null);
+             setOpaque(false);
+             super.paintComponent(grphcs);
+        }
+        
+    }
     
 }
