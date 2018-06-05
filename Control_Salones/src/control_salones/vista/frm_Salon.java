@@ -1,15 +1,36 @@
 package control_salones.vista;
 
+import control_salones.controlador.SalonControlador;
+import control_salones.modelo.Salon;
+import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 
 public class frm_Salon extends javax.swing.JFrame {
-DefaultTableModel modeloTabla;
 
-        public frm_Salon() {
+    public frm_Salon() {
         initComponents();
+        mostrar();
     }
 
-        @SuppressWarnings("unchecked")
+    private void mostrar(){
+        DefaultTableModel modelo = new DefaultTableModel();
+        SalonControlador sc = new SalonControlador();
+        ResultSet st = sc.mostrarDatos();
+        modelo.setColumnIdentifiers(new Object[]{"Numero Salon","Nombre","Capacidad","Estado"});
+        try{
+            while (st.next()){
+                Salon s = new Salon();
+                s.setNo_salon(st.getInt(1));
+                s.setEstado_salon(st.getInt(5));
+                modelo.addRow(new Object[]{st.getString("no_salon"),st.getString("nombre_salon"),st.getString("capacidad_salon"),st.getString("estado_salon")});
+            }
+            tbl_Salon.setModel(modelo);
+        }catch(Exception e){
+            System.out.print(e);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -29,9 +50,13 @@ DefaultTableModel modeloTabla;
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tbl_Salon.setModel(modeloTabla);
         jScrollPane1.setViewportView(tbl_Salon);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -79,11 +104,11 @@ DefaultTableModel modeloTabla;
         getContentPane().add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 210, -1));
 
         jLabel4.setText("Capacidad:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
-        getContentPane().add(txtCapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 90, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        getContentPane().add(txtCapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 90, -1));
 
         jLabel5.setText("Estado:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, -1, -1));
 
         cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbEstado.addActionListener(new java.awt.event.ActionListener() {
@@ -91,13 +116,13 @@ DefaultTableModel modeloTabla;
                 cmbEstadoActionPerformed(evt);
             }
         });
-        getContentPane().add(cmbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 90, -1));
+        getContentPane().add(cmbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 90, -1));
 
         jButton1.setText("Agregar");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, -1, -1));
 
         jButton2.setText("Equipo");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -113,6 +138,10 @@ DefaultTableModel modeloTabla;
     private void cmbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEstadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbEstadoActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

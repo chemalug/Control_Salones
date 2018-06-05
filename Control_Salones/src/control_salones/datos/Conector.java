@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 public class Conector {
+
     private static final String CLASE = "com.mysql.jdbc.Driver";
 
     private final String host = "35.232.63.100";
@@ -18,25 +18,24 @@ public class Conector {
 
     private Connection link;
     private Statement statement;
-
+    public ResultSet resultado;
+    
     private String mensajeError;
-
 
     public Conector() {
         this.mensajeError = "";
         this.url = "jdbc:mysql://" + this.host + "/" + this.nombre;
     }
 
-    public boolean conectar() {
+    public void conectar() {
         try {
             Class.forName(CLASE).newInstance();
             this.link = DriverManager.getConnection(this.url, this.usuario, this.clave);
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
             this.mensajeError = e.getMessage();
-            return false;
         }
-        return true;
     }
+
     public boolean insertar(String consulta) {
 
         int resultado;
@@ -52,7 +51,17 @@ public class Conector {
         }
         return (resultado > 0);
     }
- 
+
+    public ResultSet consultaRegistro(String sql) {
+        try {
+            this.statement = this.link.createStatement();
+            resultado = this.statement.executeQuery(sql);
+        } catch (SQLException ex) {
+            this.mensajeError = ex.getMessage();
+        }
+        return resultado;
+    }
+
     public boolean desconectar() {
         try {
             this.link.close();
@@ -66,5 +75,5 @@ public class Conector {
     public String getMensajeError() {
         return mensajeError;
     }
-    
+
 }
