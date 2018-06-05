@@ -158,7 +158,7 @@ public class frm_Cliente extends javax.swing.JFrame {
         }
         //</editor-fold>
         
-        System.out.println("Hola soy yaque usando github.com");
+     
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
