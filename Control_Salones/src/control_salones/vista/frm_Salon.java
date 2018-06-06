@@ -1,34 +1,16 @@
 package control_salones.vista;
 
 import control_salones.controlador.SalonControlador;
-import control_salones.modelo.Salon;
-import java.sql.ResultSet;
-import javax.swing.table.DefaultTableModel;
 
 public class frm_Salon extends javax.swing.JFrame {
 
     public frm_Salon() {
         initComponents();
-        mostrar();
+        
     }
-
-    private void mostrar(){
-        DefaultTableModel modelo = new DefaultTableModel();
-        SalonControlador sc = new SalonControlador();
-        ResultSet st = sc.mostrarDatos();
-        modelo.setColumnIdentifiers(new Object[]{"Numero Salon","Nombre","Capacidad","Estado"});
-        try{
-            while (st.next()){
-                Salon s = new Salon();
-                s.setNo_salon(st.getInt(1));
-                s.setEstado_salon(st.getInt(5));
-                modelo.addRow(new Object[]{st.getString("no_salon"),st.getString("nombre_salon"),st.getString("capacidad_salon"),st.getString("estado_salon")});
-            }
-            tbl_Salon.setModel(modelo);
-        }catch(Exception e){
-            System.out.print(e);
-        }
-    }
+    SalonControlador sc = new SalonControlador();
+    
+      
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -83,7 +65,7 @@ public class frm_Salon extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(287, 11, -1, -1));
 
         jLabel2.setText(" Nombre:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 37, -1, 30));
 
         txtNombre.setText(" ");
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -91,24 +73,24 @@ public class frm_Salon extends javax.swing.JFrame {
                 txtNombreActionPerformed(evt);
             }
         });
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 240, -1));
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 37, 240, 30));
 
         jLabel3.setText("Numero Salon:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, -1, 30));
 
         txtNumero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumeroActionPerformed(evt);
             }
         });
-        getContentPane().add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 210, -1));
+        getContentPane().add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 37, 210, 30));
 
         jLabel4.setText("Capacidad:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 77, -1, 30));
         getContentPane().add(txtCapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 90, -1));
 
         jLabel5.setText("Estado:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 77, -1, 30));
 
         cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbEstado.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +122,8 @@ public class frm_Salon extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbEstadoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
+        tbl_Salon.setModel(sc.mostrarSalon());
+        
     }//GEN-LAST:event_formWindowOpened
 
     /**
