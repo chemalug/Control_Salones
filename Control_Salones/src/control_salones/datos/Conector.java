@@ -73,14 +73,14 @@ public class Conector {
         this.conectar();
         try {
              this.statement = this.link.createStatement();
-            
+            resultado =statement.executeQuery(sql);
         } catch (SQLException ex) {
             Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
         
-        this.desconectar();
+      
         return resultado;
     }
 }

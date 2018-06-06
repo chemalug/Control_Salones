@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package control_salones.vista;
-import control_salones.modelo.dao_Carrera;
+import control_salones.controlador.Carreracontrolador;
+import control_salones.modelo.Carrera;
 /**
  *
  * @author EFI
@@ -164,7 +165,8 @@ public class frm_Ingresar_Carrera extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxTipocarreraActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-      
+    Carreracontrolador np = new Carreracontrolador();
+        np.nuevaCarrera(this.cbxTipocarrera.getSelectedIndex(), this.txtNombre.getText(),this.txtEstado.getText(), this.txtVersion.getText(), this.txtNombre.getText());      
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnAgregarnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarnuevoActionPerformed

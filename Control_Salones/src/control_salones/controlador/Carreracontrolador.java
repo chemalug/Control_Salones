@@ -11,22 +11,22 @@ import java.util.ArrayList;
  
 import javax.swing.JOptionPane;
  
-import control_salones.modelo.dao_Carrera;
+import control_salones.modelo.Carrera;
 import control_salones.datos.Conector;
 /**
  *
  * @author EFI
  */
 public class Carreracontrolador {
-    public ArrayList<dao_Carrera> buscarUsuariosConMatriz() {
+    public ArrayList<Carrera> ConsultarCarrera() {
  
   Conector conex = new Conector();
   conex.conectar();
-  ArrayList<dao_Carrera> miLista = new ArrayList<dao_Carrera>();
- ResultSet rs = conex.consulta("SELECT * FROM TBL_CARRERA ");
+  ArrayList<Carrera> miLista = new ArrayList<Carrera>();
+ ResultSet rs = conex.consulta("SELECT * FROM tbl_carrera;");
   try {
    while (rs.next()) {
-   dao_Carrera aux = new dao_Carrera();
+   Carrera aux = new Carrera();
     aux.setCodigo(Integer.parseInt(rs.getString("codigo")));
     aux.setTipo_carrera(rs.getString("codigo_tipo_carrera"));
      aux.setNombre(rs.getString("nombre_carrera"));
@@ -47,4 +47,10 @@ public class Carreracontrolador {
   }
   return miLista;
  }
+    
+    public void nuevaCarrera(int codigo, String tipo_carrera, String nombre, String estado, String version){
+ Carrera p = new Carrera();
+ p.insertar(codigo, tipo_carrera, nombre, estado, version);
+    
+}
 }

@@ -5,25 +5,27 @@
  */
 package control_salones.modelo;
 
+import control_salones.datos.Conector;
+
 
 
 /**
  *
  * @author EFI
  */
-public class dao_Carrera {
+public class Carrera {
     public int codigo;
     public String tipo_carrera;
     public String nombre;
      public String estado;
       public String version;
 
-    public dao_Carrera() {
+    public Carrera() {
     }
       
       
 
-    public dao_Carrera(int codigo, String tipo_carrera, String nombre, String estado, String version) {
+    public Carrera(int codigo, String tipo_carrera, String nombre, String estado, String version) {
         this.codigo = codigo;
         this.tipo_carrera = tipo_carrera;
         this.nombre = nombre;
@@ -77,7 +79,37 @@ public class dao_Carrera {
     }
       
       
+    public void insertar(int codigo, String tipo_carrera, String nombre, String estado, String version) {
+        this.codigo= codigo;
+        this.tipo_carrera= tipo_carrera;
+        this.nombre= nombre;
+        this.estado= estado;
+        
+        this.version= version;
+        
+        //llamamos el metodo toSQLInsert que tiene la cadena Insert
+        String SQL = this.toSqlInsert();
+        //INSERT INTO Productos (Campos) VALUES (valores);
+        Conector c1 = new Conector ();
+       
+       
+    }
+    //metodo que al estar instanciado en el constructor ya tiene los datos de las varibles solo las manda 
+      public void insertar() {
+        //INSERT INTO Productos (Campos) VALUES (valores);
+        //llamamos el metodo toSQLInsert que tiene la cadena Insert
+        String SQL = this.toSqlInsert();
+         Conector c1 = new Conector ();
+       
+        
+        
+    }
+      public String toSqlInsert(){
     
+     String resultado = "INSERT INTO tbl_carrera (codigo, codigo_tipo_carrera, nombre_carrera, estado_carrera, version) VALUES ('";
+        resultado += this.codigo +  "'," + this.tipo_carrera+  "'," + this.nombre +  "'," + this.estado+  "'," + this.version + ");";
+    return resultado;
    
             
+}
 }

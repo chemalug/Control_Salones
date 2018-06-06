@@ -11,14 +11,14 @@ package control_salones.modelo;
  *
  * @author EFI
  */
-public class dao_Tipo_Carrera {
+public class Tipo_Carrera {
     public int codigo;
     public String descripcion;
 
-    public dao_Tipo_Carrera() {
+    public Tipo_Carrera() {
     }
 
-    public dao_Tipo_Carrera(int codigo, String descripcion) {
+    public Tipo_Carrera(int codigo, String descripcion) {
         this.codigo = codigo;
         this.descripcion = descripcion;
     }
