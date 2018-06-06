@@ -1,6 +1,7 @@
 package control_salones.vista;
 
 import control_salones.controlador.SalonControlador;
+import control_salones.modelo.Salon;
 
 public class frm_Salon extends javax.swing.JFrame {
 
@@ -92,7 +93,7 @@ public class frm_Salon extends javax.swing.JFrame {
         jLabel5.setText("Estado:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 77, -1, 30));
 
-        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
         cmbEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbEstadoActionPerformed(evt);
@@ -101,6 +102,11 @@ public class frm_Salon extends javax.swing.JFrame {
         getContentPane().add(cmbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 90, -1));
 
         jButton1.setText("Agregar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, -1, -1));
 
         jButton2.setText("Equipo");
@@ -123,8 +129,21 @@ public class frm_Salon extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tbl_Salon.setModel(sc.mostrarSalon());
-        
     }//GEN-LAST:event_formWindowOpened
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Salon salon = new Salon();
+        salon.setNo_salon(Integer.parseInt(txtNumero.getText()));
+        salon.setNombre_salon(txtNombre.getText());
+        salon.setCapacidad(Integer.parseInt(txtCapacidad.getText()));
+        String item = (String) cmbEstado.getSelectedItem();
+        salon.setEstado_salon(Integer.parseInt(item));
+        
+        SalonControlador datos = new SalonControlador();
+        datos.insertarDatos(salon);
+        
+        this.tbl_Salon.setModel(sc.mostrarSalon());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
