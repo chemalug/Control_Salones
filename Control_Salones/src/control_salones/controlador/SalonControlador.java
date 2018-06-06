@@ -18,30 +18,31 @@ public class SalonControlador {
         result = c.consultaRegistro(sql);
         return result;
     }
-    
-    public DefaultTableModel mostrarSalon(){
+
+    public DefaultTableModel mostrarSalon() {
         DefaultTableModel modelo = new DefaultTableModel();
         ResultSet st = mostrarDatos();
-        modelo.setColumnIdentifiers(new Object[]{"Numero Salon","Nombre","Capacidad","Estado"});
-        try{
-            while (st.next()){
-                modelo.addRow(new Object[]{st.getString("no_salon"),st.getString("nombre_salon"),st.getString("capacidad_salon"),st.getString("estado_salon")});
+        modelo.setColumnIdentifiers(new Object[]{"Numero Salon", "Nombre", "Capacidad", "Estado"});
+        try {
+            while (st.next()) {
+                modelo.addRow(new Object[]{st.getString("no_salon"), st.getString("nombre_salon"), st.getString("capacidad_salon"), st.getString("estado_salon")});
             }
-            
-        }catch(SQLException e){
+
+        } catch (SQLException e) {
             System.out.print(e);
         }
         return modelo;
     }
-    
-    public void insertarDatos(Salon salon){
+
+    public void insertarDatos(Salon salon) {
         Conector c = new Conector();
         c.conectar();
         c.insertar("INSERT INTO tbl_salon(codigo, no_salon, nombre_salon, capacidad_salon, estado_salon) VALUES (NULL," + salon.getNo_salon() + ",'" + salon.getNombre_salon() + "', " + salon.getCapacidad() + ", " + salon.getEstado_salon() + ");");
         c.desconectar();
     }
-    
-    public List<Salon> getDatos(){
+
+    public List<Salon> getDatos() {
         return null;
     }
+
 }

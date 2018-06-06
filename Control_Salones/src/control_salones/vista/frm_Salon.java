@@ -1,7 +1,10 @@
 package control_salones.vista;
 
+import control_salones.controlador.EstadoSalonControlador;
 import control_salones.controlador.SalonControlador;
+import control_salones.modelo.EstadoSalon;
 import control_salones.modelo.Salon;
+import javax.swing.DefaultComboBoxModel;
 
 public class frm_Salon extends javax.swing.JFrame {
 
@@ -10,7 +13,7 @@ public class frm_Salon extends javax.swing.JFrame {
         
     }
     SalonControlador sc = new SalonControlador();
-    
+    EstadoSalonControlador esc = new EstadoSalonControlador();
       
 
     @SuppressWarnings("unchecked")
@@ -28,7 +31,7 @@ public class frm_Salon extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtCapacidad = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        cmbEstado = new javax.swing.JComboBox<>();
+        cmbEstado = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -93,13 +96,12 @@ public class frm_Salon extends javax.swing.JFrame {
         jLabel5.setText("Estado:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 77, -1, 30));
 
-        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
         cmbEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbEstadoActionPerformed(evt);
             }
         });
-        getContentPane().add(cmbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 90, -1));
+        getContentPane().add(cmbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 200, -1));
 
         jButton1.setText("Agregar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -107,10 +109,10 @@ public class frm_Salon extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, -1, -1));
 
         jButton2.setText("Equipo");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -129,6 +131,7 @@ public class frm_Salon extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tbl_Salon.setModel(sc.mostrarSalon());
+        cmbEstado.setModel(new DefaultComboBoxModel<EstadoSalon>(esc.listaObjetos()));
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -136,8 +139,8 @@ public class frm_Salon extends javax.swing.JFrame {
         salon.setNo_salon(Integer.parseInt(txtNumero.getText()));
         salon.setNombre_salon(txtNombre.getText());
         salon.setCapacidad(Integer.parseInt(txtCapacidad.getText()));
-        String item = (String) cmbEstado.getSelectedItem();
-        salon.setEstado_salon(Integer.parseInt(item));
+        EstadoSalon item = (EstadoSalon) cmbEstado.getSelectedItem();
+        salon.setEstado_salon(item.getCodigo());
         
         SalonControlador datos = new SalonControlador();
         datos.insertarDatos(salon);
@@ -181,7 +184,7 @@ public class frm_Salon extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cmbEstado;
+    private javax.swing.JComboBox cmbEstado;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

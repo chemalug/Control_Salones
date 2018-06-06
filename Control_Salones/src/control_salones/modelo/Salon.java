@@ -63,5 +63,4 @@ public class Salon {
         return "Salon{" + "codigo=" + codigo + ", " + "no_salon=" + no_salon + ", nombre_salon=" + nombre_salon + ", capacidad=" + capacidad + ", estado_salon=" + estado_salon + '}';
     }
     
-    
 }
