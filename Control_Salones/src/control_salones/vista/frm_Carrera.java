@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package control_salones.vista;
-
+import java.awt.event.ActionEvent;
 /**
  *
  * @author EFI
@@ -16,7 +16,13 @@ public class frm_Carrera extends javax.swing.JFrame {
      */
     public frm_Carrera() {
         initComponents();
+       
     }
+
+ 
+ 
+ 
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.

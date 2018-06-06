@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Conector {
     private static final String CLASE = "com.mysql.jdbc.Driver";
@@ -66,5 +68,19 @@ public class Conector {
     public String getMensajeError() {
         return mensajeError;
     }
-    
+     public ResultSet consulta(String sql) {
+        ResultSet resultado = null;
+        this.conectar();
+        try {
+             this.statement = this.link.createStatement();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        this.desconectar();
+        return resultado;
+    }
 }
