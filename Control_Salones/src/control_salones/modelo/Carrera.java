@@ -6,6 +6,7 @@
 package control_salones.modelo;
 
 import control_salones.datos.Conector;
+import java.sql.PreparedStatement;
 
 
 
@@ -79,37 +80,18 @@ public class Carrera {
     }
       
       
-    public void insertar(int codigo, String tipo_carrera, String nombre, String estado, String version) {
-        this.codigo= codigo;
-        this.tipo_carrera= tipo_carrera;
-        this.nombre= nombre;
-        this.estado= estado;
-        
-        this.version= version;
-        
-        //llamamos el metodo toSQLInsert que tiene la cadena Insert
-        String SQL = this.toSqlInsert();
-        //INSERT INTO Productos (Campos) VALUES (valores);
-        Conector c1 = new Conector ();
-       
-       
-    }
-    //metodo que al estar instanciado en el constructor ya tiene los datos de las varibles solo las manda 
-      public void insertar() {
-        //INSERT INTO Productos (Campos) VALUES (valores);
-        //llamamos el metodo toSQLInsert que tiene la cadena Insert
-        String SQL = this.toSqlInsert();
-         Conector c1 = new Conector ();
-       
-        
+    public void insertar(){
+        String Sql = this.toSqlInsert();
+        Conector c1 = new Conector();
+         c1.consultaVacia(Sql);
         
     }
-      public String toSqlInsert(){
+
+
+    private String toSqlInsert() {
+        String resultado = "INSERT INTO tbl_carrera( codigo, codigo_tipo_carrera, nombre_carrera, estado_carrera, version) VALUES ('" + this.codigo+"','" + this.tipo_carrera+ "','" + this.nombre+ "','" + this.estado + "','"+ this.version+ "');";
+        return resultado;
+    }
+
     
-     String resultado = "INSERT INTO tbl_carrera (codigo, codigo_tipo_carrera, nombre_carrera, estado_carrera, version) VALUES ('";
-        resultado += this.codigo +  "'," + this.tipo_carrera+  "'," + this.nombre +  "'," + this.estado+  "'," + this.version + ");";
-    return resultado;
-   
-            
-}
 }

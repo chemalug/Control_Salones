@@ -48,9 +48,9 @@ public class Carreracontrolador {
   return miLista;
  }
     
-    public void nuevaCarrera(int codigo, String tipo_carrera, String nombre, String estado, String version){
- Carrera p = new Carrera();
- p.insertar(codigo, tipo_carrera, nombre, estado, version);
-    
-}
+//    public void nuevaCarrera(int codigo, String tipo_carrera, String nombre, String estado, String version){
+// Carrera p = new Carrera(int codigo, String tipo_carrera, String nombre, String estado, String version);
+// p.insertar(codigo, tipo_carrera, nombre, estado, version);
+//    
+//}
 }
