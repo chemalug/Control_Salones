@@ -41,7 +41,7 @@ public class Tipo_Carrera {
 
     @Override
     public String toString() {
-        return "dao_Tipo_Carrera{" + "codigo=" + codigo + ", descripcion=" + descripcion + '}';
+        return descripcion ;
     }
     
      

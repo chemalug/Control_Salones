@@ -6,17 +6,23 @@
 package control_salones.vista;
 import control_salones.controlador.Carreracontrolador;
 import control_salones.modelo.Carrera;
+import control_salones.modelo.Tipo_Carrera;
+import javax.swing.JOptionPane;
 /**
  *
  * @author EFI
  */
 public class frm_Ingresar_Carrera extends javax.swing.JFrame {
 
+    Carreracontrolador controla = new Carreracontrolador();
     /**
      * Creates new form frm_Ingresar_Carrera
      */
     public frm_Ingresar_Carrera() {
         initComponents();
+        
+        //llamamos al metodo consultar_tipo que esta en carreracontrolador para llenar el jcombobox
+       controla.consultar_tipo(cbxTipocarrera);
     }
 
     /**
@@ -42,7 +48,6 @@ public class frm_Ingresar_Carrera extends javax.swing.JFrame {
         btnAgregarnuevo = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
-        txttipo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -68,7 +73,7 @@ public class frm_Ingresar_Carrera extends javax.swing.JFrame {
                 cbxTipocarreraActionPerformed(evt);
             }
         });
-        getContentPane().add(cbxTipocarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, 250, 30));
+        getContentPane().add(cbxTipocarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 250, 30));
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 293, 250, 30));
         getContentPane().add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 333, 250, 30));
         getContentPane().add(txtVersion, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 373, 250, 30));
@@ -95,7 +100,6 @@ public class frm_Ingresar_Carrera extends javax.swing.JFrame {
         jLabel6.setText("Codigo:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, -1));
         getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 250, 30));
-        getContentPane().add(txttipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 250, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -105,9 +109,11 @@ public class frm_Ingresar_Carrera extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxTipocarreraActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-//    Carreracontrolador np = new Carreracontrolador();
-//        np.nuevaCarrera(Integer.parseInt(this.txtCodigo.getText()), this.txttipo.getText(), this.txtNombre.getText(),this.txtEstado.getText(), this.txtVersion.getText());      
-Carrera p = new Carrera(Integer.parseInt(this.txtCodigo.getText()), this.txttipo.getText(), this.txtNombre.getText(), this.txtEstado.getText(), this.txtVersion.getText());
+  if(cbxTipocarrera.getSelectedItem() instanceof String){
+      JOptionPane.showMessageDialog(this, "Elija una opcion correcta", "ERROR", JOptionPane.WARNING_MESSAGE);
+      return;
+  }
+    Carrera p = new Carrera(Integer.parseInt(this.txtCodigo.getText()), String.valueOf(((Tipo_Carrera)this.cbxTipocarrera.getSelectedItem()).getCodigo()), this.txtNombre.getText(), this.txtEstado.getText(), this.txtVersion.getText());
   p.insertar();
 
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -158,7 +164,7 @@ Carrera p = new Carrera(Integer.parseInt(this.txtCodigo.getText()), this.txttipo
     private javax.swing.JButton btnAgregarnuevo;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JComboBox<String> cbxTipocarrera;
+    private javax.swing.JComboBox<Tipo_Carrera> cbxTipocarrera;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -169,6 +175,5 @@ Carrera p = new Carrera(Integer.parseInt(this.txtCodigo.getText()), this.txttipo
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtVersion;
-    private javax.swing.JTextField txttipo;
     // End of variables declaration//GEN-END:variables
 }
