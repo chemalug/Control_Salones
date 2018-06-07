@@ -59,7 +59,7 @@ public class Tipo_Carrera {
 
 
     private String toSqlInsert() {
-        String resultado = "INSERT INTO tbl_tipo_carrera( codigo, descripcion) VALUES ('" + this.descripcion+  "');";
+        String resultado = "INSERT INTO tbl_tipo_carrera(codigo, descripcion) VALUES ('" + this.codigo+  "','" + this.descripcion+  "');";
         return resultado;
     }
      

@@ -23,6 +23,7 @@ import java.sql.PreparedStatement;
 
 
 import javax.swing.JComboBox;
+import javax.swing.JTextField;
 
 /**
  *
@@ -104,5 +105,44 @@ try {
 }
 
 
+
+
+//CONSULTA EL CODIGO DE LA TABLA TIPO DE CARRERA PARA LLENAR EL JTXTFIELD
+public void llenar_jtxtfield(JTextField txtCodigo){
+
+//Creamos objeto tipo Connection  para establecer conexion con bd  
+java.sql.Connection conectar = null;    
+PreparedStatement pst = null;
+
+Conector conex = new Conector();
+  conex.conectar();
+//Creamos la Consulta SQL
+
+   ResultSet rs = conex.consulta("SELECT MAX(codigo) + 1 FROM tbl_tipo_carrera;");
+//Establecemos bloque try-catch-finally
+try {      
+   //LLenamos nuestro ComboBox
+ 
+    Tipo_Carrera tipoCarrera;
+   while(rs.next()){   
+       
+       txtCodigo.setText(rs.getString(1));
+   }    
+} catch (SQLException e) {
+    JOptionPane.showMessageDialog(null, e);   
+}finally{
+    if(conectar!=null){        
+        try {       
+            conectar.close();
+            rs.close();            
+            conectar=null;
+            rs=null;
+            
+        } catch (SQLException ex) {            
+            JOptionPane.showMessageDialog(null, ex);    
+        }
+    }
+}
+}
     
 }
