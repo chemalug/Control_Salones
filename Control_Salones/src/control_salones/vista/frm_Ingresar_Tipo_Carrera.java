@@ -5,6 +5,8 @@
  */
 package control_salones.vista;
 
+import control_salones.modelo.Tipo_Carrera;
+
 /**
  *
  * @author EFI
@@ -43,6 +45,11 @@ public class frm_Ingresar_Tipo_Carrera extends javax.swing.JFrame {
         btnCancelar.setText("Cancelar");
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,6 +92,15 @@ public class frm_Ingresar_Tipo_Carrera extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+    
+  
+    Tipo_Carrera k= new Tipo_Carrera( this.txtDescripcion.getText());
+  k.insertar();
+
+            
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
