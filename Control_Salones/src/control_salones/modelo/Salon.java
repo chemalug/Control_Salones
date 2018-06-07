@@ -7,17 +7,6 @@ public class Salon {
     private int capacidad;
     private int estado_salon;
 
-    public Salon() {
-    }
-
-    public Salon(int codigo, int no_salon, String nombre_salon, int capacidad, int estado_salon) {
-        this.codigo = codigo;
-        this.no_salon = no_salon;
-        this.nombre_salon = nombre_salon;
-        this.capacidad = capacidad;
-        this.estado_salon = estado_salon;
-    }
-
     public int getCodigo() {
         return codigo;
     }
@@ -25,7 +14,7 @@ public class Salon {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-    
+
     public int getNo_salon() {
         return no_salon;
     }
@@ -58,9 +47,23 @@ public class Salon {
         this.estado_salon = estado_salon;
     }
 
+    public Salon(int codigo, int no_salon, String nombre_salon, int capacidad, int estado_salon) {
+        this.codigo = codigo;
+        this.no_salon = no_salon;
+        this.nombre_salon = nombre_salon;
+        this.capacidad = capacidad;
+        this.estado_salon = estado_salon;
+    }
+
+    public Salon(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public Salon() {
+    }
+
     @Override
     public String toString() {
-        return "Salon{" + "codigo=" + codigo + ", " + "no_salon=" + no_salon + ", nombre_salon=" + nombre_salon + ", capacidad=" + capacidad + ", estado_salon=" + estado_salon + '}';
+        return "Salon{" + "codigo=" + codigo + ", no_salon=" + no_salon + ", nombre_salon=" + nombre_salon + ", capacidad=" + capacidad + ", estado_salon=" + estado_salon + '}';
     }
-    
 }

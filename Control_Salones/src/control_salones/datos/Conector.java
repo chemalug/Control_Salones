@@ -61,6 +61,14 @@ public class Conector {
         }
         return resultado;
     }
+    
+    public ResultSet consultarDatos(String sql) {
+        ResultSet result = null;
+        Conector c = new Conector();
+        c.conectar();
+        result = c.consultaRegistro(sql);
+        return result;
+    }
 
     public boolean desconectar() {
         try {
