@@ -6,9 +6,11 @@
 package control_salones.vista;
 import control_salones.controlador.Carreracontrolador;
 import control_salones.modelo.Carrera;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
@@ -81,7 +83,7 @@ public class frm_Carrera extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblCarrera = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -194,7 +196,18 @@ public class frm_Carrera extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregar1ActionPerformed
 
     private void btnModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificar1ActionPerformed
-       
+      frm_Modificar_Carrera modificar = new frm_Modificar_Carrera();
+      modificar.setVisible(true);
+
+             
+
+          
+          
+          
+             
+
+
+        
     }//GEN-LAST:event_btnModificar1ActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
