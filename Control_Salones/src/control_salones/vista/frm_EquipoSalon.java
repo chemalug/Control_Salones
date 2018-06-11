@@ -3,7 +3,6 @@ package control_salones.vista;
 import control_salones.controlador.EstadoSalonControlador;
 import control_salones.controlador.EquipoSalonControlador;
 import control_salones.controlador.EquipoControlador;
-import javax.swing.table.DefaultTableModel;
 
 public class frm_EquipoSalon extends javax.swing.JFrame {
 
@@ -76,6 +75,11 @@ public class frm_EquipoSalon extends javax.swing.JFrame {
         });
 
         btnEquipo.setText("Agregar Equipo");
+        btnEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEquipoActionPerformed(evt);
+            }
+        });
 
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -196,14 +200,17 @@ public class frm_EquipoSalon extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        
+    tbl_EquipoSalon.setModel(sc.mostrarEquipoSalon("SELECT * FROM tbl_Salon"));
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void btnVerEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerEquipoActionPerformed
         String dato = String.valueOf(tbl_EquipoSalon.getValueAt(tbl_EquipoSalon.getSelectedRow(),0));
-        System.out.println(dato);
         tblEquipo.setModel(e.mostrarEquipo("SELECT s.codigo, es.codigo_equipo, e.nombre, e.descripcion, es.cantidad FROM tbl_salon s INNER JOIN tbl_equipo_salon es ON s.codigo = es.codigo_salon INNER JOIN tbl_equipo e ON e.codigo = es.codigo_equipo WHERE s.codigo = " + dato + ";"));
     }//GEN-LAST:event_btnVerEquipoActionPerformed
+
+    private void btnEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEquipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEquipoActionPerformed
 
     /**
      * @param args the command line arguments

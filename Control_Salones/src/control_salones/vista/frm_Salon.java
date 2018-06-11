@@ -13,7 +13,7 @@ public class frm_Salon extends javax.swing.JFrame {
     public frm_Salon() {
         initComponents();
     }
-
+    
     SalonControlador sc = new SalonControlador();
     EstadoSalonControlador esc = new EstadoSalonControlador();
     
@@ -112,10 +112,25 @@ public class frm_Salon extends javax.swing.JFrame {
         });
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel1.setText("SALON");
@@ -217,17 +232,38 @@ public class frm_Salon extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         Salon salon = new Salon();
+        SalonControlador sc = new SalonControlador();
+        
+        salon.setCodigo(Integer.parseInt(txtCodigo.getText()));
         salon.setNo_salon(Integer.parseInt(txtNumero.getText()));
         salon.setNombre_salon(txtNombre.getText());
         salon.setCapacidad(Integer.parseInt(txtCapacidad.getText()));
         EstadoSalon item = (EstadoSalon) cmbEstado.getSelectedItem();
         salon.setEstado_salon(item.getCodigo());
         
-        SalonControlador datos = new SalonControlador();
-        datos.insertarDatos(salon);
+        sc.insertarSalon(salon);
         
-        this.tblSalones.setModel(sc.mostrarSalon("SELECT * FROM tbl_Salon"));
+        this.tblSalones.setModel(sc.mostrarSalon("SELECT * FROM tbl_salon"));
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        Salon salon = new Salon();
+        SalonControlador sc = new SalonControlador();
+        String dato = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),0));
+        salon.setCodigo(Integer.parseInt(dato));
+        sc.borrarSalon(salon);
+                
+        this.tblSalones.setModel(sc.mostrarSalon("SELECT * FROM tbl_salon"));
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        this.tblSalones.setModel(sc.mostrarSalon("SELECT * FROM tbl_salon"));
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        String dato = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),0));
+        txtCodigo.setText(dato);
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     /**
      * @param args the command line arguments
