@@ -14,12 +14,13 @@ import control_salones.modelo.Tipo_Carrera;
  * @author EFI
  */
 public class frm_Modificar_Carrera extends javax.swing.JFrame {
-
+ Carreracontrolador controla = new Carreracontrolador();
     /**
      * Creates new form frm_Modificar_Carrera
      */
     public frm_Modificar_Carrera() {
         initComponents();
+        controla.consultar_tipo(cbxTipocarrera);
     }
 
     /**
@@ -42,9 +43,9 @@ public class frm_Modificar_Carrera extends javax.swing.JFrame {
         txtVersion = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
-        btnAgregarnuevo = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
+        txtTipo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -65,6 +66,12 @@ public class frm_Modificar_Carrera extends javax.swing.JFrame {
             }
         });
 
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+
         btnCancelar.setText("Cancelar");
 
         btnGuardar.setText("Guardar");
@@ -74,14 +81,11 @@ public class frm_Modificar_Carrera extends javax.swing.JFrame {
             }
         });
 
-        btnAgregarnuevo.setText("Agregar nuevo tipo");
-        btnAgregarnuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarnuevoActionPerformed(evt);
-            }
-        });
-
         jLabel6.setText("Codigo:");
+
+        txtCodigo.setEnabled(false);
+
+        txtTipo.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,13 +103,13 @@ public class frm_Modificar_Carrera extends javax.swing.JFrame {
                                 .addGap(5, 5, 5)
                                 .addComponent(jLabel6)
                                 .addGap(43, 43, 43)
-                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(6, 6, 6)
-                                .addComponent(cbxTipocarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(15, 15, 15)
-                                .addComponent(btnAgregarnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cbxTipocarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(jLabel4)
@@ -126,7 +130,7 @@ public class frm_Modificar_Carrera extends javax.swing.JFrame {
                                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20)
                                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,16 +140,16 @@ public class frm_Modificar_Carrera extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addGap(23, 23, 23)
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(cbxTipocarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnAgregarnuevo))
+                        .addGap(20, 20, 20)
+                        .addComponent(cbxTipocarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -200,11 +204,9 @@ Carreracontrolador mod = new Carreracontrolador();
        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void btnAgregarnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarnuevoActionPerformed
-        frm_Ingresar_Tipo_Carrera tipocarrera = new frm_Ingresar_Tipo_Carrera();
-        tipocarrera.setVisible(true);
-
-    }//GEN-LAST:event_btnAgregarnuevoActionPerformed
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,7 +244,6 @@ Carreracontrolador mod = new Carreracontrolador();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarnuevo;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox<Tipo_Carrera> cbxTipocarrera;
@@ -252,9 +253,10 @@ Carreracontrolador mod = new Carreracontrolador();
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtEstado;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtVersion;
+    public static javax.swing.JTextField txtCodigo;
+    public static javax.swing.JTextField txtEstado;
+    public static javax.swing.JTextField txtNombre;
+    public static javax.swing.JTextField txtTipo;
+    public static javax.swing.JTextField txtVersion;
     // End of variables declaration//GEN-END:variables
 }

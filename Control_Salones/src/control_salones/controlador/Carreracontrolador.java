@@ -202,21 +202,19 @@ Conector conex = new Conector();
 //BUSCAR POR CODIGO EN JTABLE
 
 DefaultTableModel ModeloTabla;
-    
 public void Buscar(int valor,  JTable tblcarrera){
-
+//Array con las columnas del JTable
     String [] columnas={"codigo", "tipo_carrera", "nombre", "estado", " version"};
     String [] registro=new String[5];
     ModeloTabla=new DefaultTableModel(null,columnas);      
-   
+   //Abrimos la conexion
         java.sql.Connection conectar = null;    
 PreparedStatement pst = null;
 
 Conector conex = new Conector();
   conex.conectar();
 //Creamos la Consulta SQL
-
-   ResultSet rs = conex.consulta("SELECT codigo, codigo_tipo_carrera, nombre_carrera, estado_carrera, version FROM tbl_carrera WHERE codigo=  '%"+valor+"%'");
+   ResultSet rs = conex.consulta("SELECT codigo, codigo_tipo_carrera, nombre_carrera, estado_carrera, version FROM tbl_carrera WHERE codigo LIKE '%"+valor+"%'");
     
     try {
         while (rs.next()){
