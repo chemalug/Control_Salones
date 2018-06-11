@@ -93,5 +93,15 @@ public class Carrera {
         return resultado;
     }
 
+    public void Actualizar() {
+     String Sql = this.toSqlUpdate();
+        Conector c1 = new Conector();
+         c1.consultaVacia(Sql);
+    }
+ private String toSqlUpdate() {
+        String resultado = "UPDATE tbl_carrera SET codigo_tipo_carrera= '"+ this.codigo+"', nombre_carrera ='"+this.nombre+"', estado_carrera='" + this.estado+"', version='" + this.version+ "' ;";
+
+        return resultado;
+    }
     
 }

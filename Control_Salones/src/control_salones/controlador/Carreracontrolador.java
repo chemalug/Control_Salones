@@ -23,7 +23,9 @@ import java.sql.PreparedStatement;
 
 
 import javax.swing.JComboBox;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -144,5 +146,130 @@ try {
     }
 }
 }
+
+//ACTUALIZA LOS DATOS DE LA CARRERA SELECCIONADA
+
+public void Actualizar(int codigo, String tipo_carrera, String nombre, String estado, String version){
+
+int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea modificar los datos actuales?");
+if(confirmar == JOptionPane.YES_OPTION){
+    //Creamos objeto tipo Connection  para establecer conexion con bd  
+java.sql.Connection conectar = null;    
+PreparedStatement pst = null;
+
+Conector conex = new Conector();
+  conex.conectar();
+//Creamos la Consulta SQL
+//   ResultSet rs = conex.consulta("UPDATE tbl_carrera SET codigo_tipo_carrera=?, nombre_carrera=?, estado_carrera=?, version=? "
+//                    + "WHERE codigo=?");
+//Establecemos bloque try-catch-finally   
+    try {     
+        String Ssql = "UPDATE tbl_carrera SET codigo_tipo_carrera=?, nombre_carrera=?, estado_carrera=?, version=? "
+                 + "WHERE codigo=?";       
+        pst = conectar.prepareStatement(Ssql);        
+        pst.setInt(1, codigo);
+        pst.setString(2, tipo_carrera);
+        pst.setString(3, nombre);
+        pst.setString(4, estado);
+        pst.setString(5, version);
+              
+        if(pst.executeUpdate() > 0){       
+            JOptionPane.showMessageDialog(null, "Los datos han sido modificados con éxito", "Operación Exitosa", 
+                                          JOptionPane.INFORMATION_MESSAGE);            
+        }else{
+                    JOptionPane.showMessageDialog(null, "No se ha podido realizar la actualización de los datos\n"
+                                          + "Inténtelo nuevamente.", "Error en la operación", 
+                                          JOptionPane.ERROR_MESSAGE);       
+        }   } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "No se ha podido realizar la actualización de los datos\n"
+                                          + "Inténtelo nuevamente.\n"
+                                          + "Error: "+e, "Error en la operación", 
+                                          JOptionPane.ERROR_MESSAGE); }finally{
+        if(conex!=null){  
+            try {
+                
+                conectar.close();
+            
+            } catch (SQLException e) {
+            
+                JOptionPane.showMessageDialog(null, "Error al intentar cerrar la conexión."
+                                          + "Error: "+e, "Error en la operación", 
+                                          JOptionPane.ERROR_MESSAGE);
+}}}}}
+
+
+
+//BUSCAR POR CODIGO EN JTABLE
+
+DefaultTableModel ModeloTabla;
     
+public void Buscar(String valor, String filtro, JTable tablacontactos){
+
+    String [] columnas={"ID","Nombres","Apellidos","Email","Celular", "Dirección", "Ciudad"};
+    String [] registro=new String[7];
+    ModeloTabla=new DefaultTableModel(null,columnas);      
+    String SSQL;
+  java.sql.Connection conectar = null; 
+    
+        SSQL= "SELECT codigo, codigo_tipo_"
+                 + "FROM contacto WHERE celular LIKE '%"+valor+"%'";
+    
+    try {
+Conector conex = new Conector();
+  conex.conectar();
+     PreparedStatement pst = conectar.prepareStatement(SSQL);
+ 
+        ResultSet rs = pst.executeQuery();
+
+        while (rs.next()){
+          
+            registro[0]=rs.getString("id_contacto");
+            registro[1]=rs.getString("nombres");
+            registro[2]=rs.getString("apellidos");
+            registro[3]=rs.getString("email");
+            registro[4]=rs.getString("celular");
+            registro[5]=rs.getString("direccion");
+            registro[6]=rs.getString("ciudad");
+          
+            ModeloTabla.addRow(registro);
+           
+        }
+        
+        tablacontactos.setModel(ModeloTabla);
+
+    } catch (SQLException e) {
+
+
+        JOptionPane.showMessageDialog(null, e, "Error durante el procedimiento", JOptionPane.ERROR_MESSAGE);
+    
+    
+    }finally{
+
+        if(conect!=null){
+        
+            try {
+
+                conect.close();
+
+            } catch (SQLException ex) {
+
+                JOptionPane.showMessageDialog(null, ex, "Error de desconexión", JOptionPane.ERROR_MESSAGE);
+
+            }
+        
+        }
+        
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
 }

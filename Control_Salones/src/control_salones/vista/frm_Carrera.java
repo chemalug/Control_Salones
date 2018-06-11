@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
@@ -199,10 +200,7 @@ public class frm_Carrera extends javax.swing.JFrame {
       frm_Modificar_Carrera modificar = new frm_Modificar_Carrera();
       modificar.setVisible(true);
 
-             
-
-          
-          
+    
           
              
 

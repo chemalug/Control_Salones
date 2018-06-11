@@ -5,6 +5,8 @@
  */
 package control_salones.vista;
 
+import control_salones.controlador.Carreracontrolador;
+import control_salones.modelo.Carrera;
 import control_salones.modelo.Tipo_Carrera;
 
 /**
@@ -179,6 +181,22 @@ public class frm_Modificar_Carrera extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxTipocarreraActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+Carrera modificar = new Carrera();
+Carreracontrolador mod = new Carreracontrolador();
+//if(idcontacto.isEmpty()){
+//       
+//       JOptionPane.showMessageDialog(null, "No hay datos para modificar.\n"
+//                                     + "Por favor, seleccione un registro de la tabla.", "Error en la operación", 
+//                                     JOptionPane.ERROR_MESSAGE);
+//       
+//}else{
+
+        mod.Actualizar(Integer.parseInt(txtCodigo.getText()), String.valueOf(((Tipo_Carrera)this.cbxTipocarrera.getSelectedItem()).getCodigo()), txtNombre.getText(), 
+                            txtEstado.getText(), txtVersion.getText());
+
+
+        
+        
        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
