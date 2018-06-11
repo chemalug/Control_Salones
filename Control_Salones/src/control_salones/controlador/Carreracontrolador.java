@@ -203,16 +203,15 @@ Conector conex = new Conector();
 
 DefaultTableModel ModeloTabla;
     
-public void Buscar(String valor, String filtro, JTable tablacontactos){
+public void Buscar(String valor, String filtro, JTable tblcarrera){
 
-    String [] columnas={"ID","Nombres","Apellidos","Email","Celular", "Dirección", "Ciudad"};
+    String [] columnas={"Codigo","Tipo Carrera","Nombre","Estado","Version"};
     String [] registro=new String[7];
     ModeloTabla=new DefaultTableModel(null,columnas);      
     String SSQL;
   java.sql.Connection conectar = null; 
     
-        SSQL= "SELECT codigo, codigo_tipo_"
-                 + "FROM contacto WHERE celular LIKE '%"+valor+"%'";
+        SSQL= "SELECT codigo, codigo_tipo_carrera, nombre_carrera, estado_carrera, version FROM tbl_carrera WHERE codigo=  '%"+valor+"%'";
     
     try {
 Conector conex = new Conector();
@@ -223,19 +222,17 @@ Conector conex = new Conector();
 
         while (rs.next()){
           
-            registro[0]=rs.getString("id_contacto");
-            registro[1]=rs.getString("nombres");
-            registro[2]=rs.getString("apellidos");
-            registro[3]=rs.getString("email");
-            registro[4]=rs.getString("celular");
-            registro[5]=rs.getString("direccion");
-            registro[6]=rs.getString("ciudad");
-          
+            registro[0]=rs.getString("codigo");
+            registro[1]=rs.getString("codigo_tipo_carrera");
+            registro[2]=rs.getString("nombre_carrera");
+            registro[3]=rs.getString("estado_carrera");
+            registro[4]=rs.getString("version");
+           
             ModeloTabla.addRow(registro);
            
         }
         
-        tablacontactos.setModel(ModeloTabla);
+        tblcarrera.setModel(ModeloTabla);
 
     } catch (SQLException e) {
 
@@ -245,11 +242,11 @@ Conector conex = new Conector();
     
     }finally{
 
-        if(conect!=null){
+        if(conectar!=null){
         
             try {
 
-                conect.close();
+                conectar.close();
 
             } catch (SQLException ex) {
 
