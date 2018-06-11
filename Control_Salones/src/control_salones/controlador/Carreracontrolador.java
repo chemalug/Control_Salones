@@ -203,23 +203,22 @@ Conector conex = new Conector();
 
 DefaultTableModel ModeloTabla;
     
-public void Buscar(String valor,  JTable tblcarrera){
+public void Buscar(int valor,  JTable tblcarrera){
 
-    String [] columnas={"Codigo","Tipo Carrera","Nombre","Estado","Version"};
-    String [] registro=new String[7];
+    String [] columnas={"codigo", "tipo_carrera", "nombre", "estado", " version"};
+    String [] registro=new String[5];
     ModeloTabla=new DefaultTableModel(null,columnas);      
-    String SSQL;
-  java.sql.Connection conectar = null; 
-    
-        SSQL= "SELECT codigo, codigo_tipo_carrera, nombre_carrera, estado_carrera, version FROM tbl_carrera WHERE codigo=  '%"+valor+"%'";
-    
-    try {
+   
+        java.sql.Connection conectar = null;    
+PreparedStatement pst = null;
+
 Conector conex = new Conector();
   conex.conectar();
-     PreparedStatement pst = conectar.prepareStatement(SSQL);
- 
-        ResultSet rs = pst.executeQuery();
+//Creamos la Consulta SQL
 
+   ResultSet rs = conex.consulta("SELECT codigo, codigo_tipo_carrera, nombre_carrera, estado_carrera, version FROM tbl_carrera WHERE codigo=  '%"+valor+"%'");
+    
+    try {
         while (rs.next()){
           
             registro[0]=rs.getString("codigo");

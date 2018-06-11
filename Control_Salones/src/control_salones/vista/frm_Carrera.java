@@ -15,11 +15,14 @@ import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 /**
  *
  * @author LouFlores
  */
 public class frm_Carrera extends javax.swing.JFrame {
+
+    private TableModel ModeloTabla;
 
     /**
      * Creates new form frm_Carrera
@@ -159,13 +162,10 @@ public class frm_Carrera extends javax.swing.JFrame {
 
         tblCarrera.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         tblCarrera.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -230,7 +230,7 @@ public class frm_Carrera extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
   Carreracontrolador car = new Carreracontrolador();
-      car.Buscar(txtCodigo.getText(), tblCarrera);
+      car.Buscar(Integer.parseInt(txtCodigo.getText()), tblCarrera);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
