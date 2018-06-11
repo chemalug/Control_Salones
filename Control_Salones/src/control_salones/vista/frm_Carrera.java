@@ -101,6 +101,11 @@ public class frm_Carrera extends javax.swing.JFrame {
         getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 150, 280, 30));
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(431, 150, 90, 30));
 
         btnAgregar.setText("Agregar");
@@ -222,6 +227,11 @@ public class frm_Carrera extends javax.swing.JFrame {
     private void tblCarreraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblCarreraKeyPressed
        
     }//GEN-LAST:event_tblCarreraKeyPressed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+  Carreracontrolador car = new Carreracontrolador();
+      car.Buscar(txtCodigo.getText(), tblCarrera);
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments

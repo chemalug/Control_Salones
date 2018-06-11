@@ -203,7 +203,7 @@ Conector conex = new Conector();
 
 DefaultTableModel ModeloTabla;
     
-public void Buscar(String valor, String filtro, JTable tblcarrera){
+public void Buscar(String valor,  JTable tblcarrera){
 
     String [] columnas={"Codigo","Tipo Carrera","Nombre","Estado","Version"};
     String [] registro=new String[7];
