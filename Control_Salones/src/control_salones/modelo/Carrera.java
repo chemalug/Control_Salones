@@ -7,6 +7,7 @@ package control_salones.modelo;
 
 import control_salones.datos.Conector;
 import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
 
 
 
@@ -89,9 +90,9 @@ public class Carrera {
 
 
     private String toSqlInsert() {
-        String resultado = "INSERT INTO tbl_carrera( codigo, codigo_tipo_carrera, nombre_carrera, estado_carrera, version) VALUES ('" + this.codigo+"','" + this.tipo_carrera+ "','" + this.nombre+ "','" + this.estado + "','"+ this.version+ "');";
+         String resultado = "INSERT INTO tbl_carrera( codigo, codigo_tipo_carrera, nombre_carrera, estado_carrera, version) VALUES ('" + this.codigo+"','" + this.tipo_carrera+ "','" + this.nombre+ "','" + this.estado + "','"+ this.version+ "');";
         return resultado;
-    }
+           }
 
     public void Actualizar() {
      String Sql = this.toSqlUpdate();
@@ -99,9 +100,23 @@ public class Carrera {
          c1.consultaVacia(Sql);
     }
  private String toSqlUpdate() {
-        String resultado = "UPDATE tbl_carrera SET codigo_tipo_carrera= '"+ this.codigo+"', nombre_carrera ='"+this.nombre+"', estado_carrera='" + this.estado+"', version='" + this.version+ "' ;";
+        String resultado = "UPDATE tbl_carrera SET codigo = '"+ this.codigo+"', codigo_tipo_carrera= '"+ this.tipo_carrera+"', nombre_carrera ='"+this.nombre+"', estado_carrera='" + this.estado+"', version='" + this.version+ "' WHERE codigo ='" + this.codigo+ "';";
 
         return resultado;
+        
+    }
+ 
+ public void Eliminar(){
+     String Sql = this.toSqlDelete();
+        Conector c1 = new Conector();
+         c1.consultaVacia(Sql);
+ }
+  private String toSqlDelete() {
+      
+        String resultado = " DELETE FROM tbl_carrera WHERE codigo ='" + this.codigo+ "';";
+
+        return resultado;
+        
     }
     
 }

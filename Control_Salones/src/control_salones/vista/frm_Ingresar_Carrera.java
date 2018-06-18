@@ -115,6 +115,7 @@ public class frm_Ingresar_Carrera extends javax.swing.JFrame {
   }
     Carrera p = new Carrera(Integer.parseInt(this.txtCodigo.getText()), String.valueOf(((Tipo_Carrera)this.cbxTipocarrera.getSelectedItem()).getCodigo()), this.txtNombre.getText(), this.txtEstado.getText(), this.txtVersion.getText());
   p.insertar();
+
  
 
     }//GEN-LAST:event_btnGuardarActionPerformed

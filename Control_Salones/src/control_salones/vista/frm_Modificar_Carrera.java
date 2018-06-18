@@ -8,6 +8,7 @@ package control_salones.vista;
 import control_salones.controlador.Carreracontrolador;
 import control_salones.modelo.Carrera;
 import control_salones.modelo.Tipo_Carrera;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,7 +46,6 @@ public class frm_Modificar_Carrera extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
-        txtTipo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -85,8 +85,6 @@ public class frm_Modificar_Carrera extends javax.swing.JFrame {
 
         txtCodigo.setEnabled(false);
 
-        txtTipo.setEnabled(false);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,9 +101,7 @@ public class frm_Modificar_Carrera extends javax.swing.JFrame {
                                 .addGap(5, 5, 5)
                                 .addComponent(jLabel6)
                                 .addGap(43, 43, 43)
-                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(6, 6, 6)
@@ -130,7 +126,7 @@ public class frm_Modificar_Carrera extends javax.swing.JFrame {
                                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20)
                                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,9 +136,7 @@ public class frm_Modificar_Carrera extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
@@ -185,23 +179,25 @@ public class frm_Modificar_Carrera extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxTipocarreraActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-Carrera modificar = new Carrera();
-Carreracontrolador mod = new Carreracontrolador();
-//if(idcontacto.isEmpty()){
-//       
-//       JOptionPane.showMessageDialog(null, "No hay datos para modificar.\n"
-//                                     + "Por favor, seleccione un registro de la tabla.", "Error en la operación", 
-//                                     JOptionPane.ERROR_MESSAGE);
-//       
-//}else{
-
-        mod.Actualizar(Integer.parseInt(txtCodigo.getText()), String.valueOf(((Tipo_Carrera)this.cbxTipocarrera.getSelectedItem()).getCodigo()), txtNombre.getText(), 
-                            txtEstado.getText(), txtVersion.getText());
+ Carrera modificar = new Carrera();
+        modificar.setCodigo(Integer.parseInt(txtCodigo.getText()));
+        modificar.setTipo_carrera(String.valueOf(((Tipo_Carrera)this.cbxTipocarrera.getSelectedItem()).getCodigo()));
+        modificar.setNombre(txtNombre.getText());
+          modificar.setEstado(txtEstado.getText());
+           modificar.setVersion(txtVersion.getText());
+        Carreracontrolador datos = new Carreracontrolador();
+        datos.Actualizar(modificar);
+          JOptionPane.showMessageDialog(null, "Ingresado Correctamente");
+        dispose();
+//Carreracontrolador controla = new Carreracontrolador();
+//
+//
+//        controla.Actualizar(Integer.parseInt(txtCodigo.getText()), txtTipo.getText(), txtNombre.getText(), 
+//                            txtEstado.getText(), txtVersion.getText());
 
 
         
-        
-       
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
@@ -246,7 +242,7 @@ Carreracontrolador mod = new Carreracontrolador();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JComboBox<Tipo_Carrera> cbxTipocarrera;
+    public javax.swing.JComboBox<Tipo_Carrera> cbxTipocarrera;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -256,7 +252,6 @@ Carreracontrolador mod = new Carreracontrolador();
     public static javax.swing.JTextField txtCodigo;
     public static javax.swing.JTextField txtEstado;
     public static javax.swing.JTextField txtNombre;
-    public static javax.swing.JTextField txtTipo;
     public static javax.swing.JTextField txtVersion;
     // End of variables declaration//GEN-END:variables
 }

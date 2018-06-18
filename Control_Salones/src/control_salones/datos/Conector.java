@@ -98,4 +98,19 @@ private String cadena ="";
 
         this.desconectar();
     }
+      
+      public boolean delDatos (String consulta){
+        int resultado;
+
+        try {
+
+            this.statement = this.link.createStatement();
+            resultado = this.statement.executeUpdate(consulta);
+
+        } catch (SQLException e) {
+            this.mensajeError = e.getMessage();
+            return false;
+        }
+        return (resultado > 0);
+    }
 }

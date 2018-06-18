@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import control_salones.modelo.Carrera;
 import control_salones.datos.Conector;
 import control_salones.modelo.Tipo_Carrera;
+import control_salones.datos.Conector;
 
 
 
@@ -147,118 +148,65 @@ try {
 }
 }
 
-//ACTUALIZA LOS DATOS DE LA CARRERA SELECCIONADA
+//MODIFICA LOS DATOS DE LA CARRERA SELECCIONADA
 
-public void Actualizar(int codigo, String tipo_carrera, String nombre, String estado, String version){
-
-int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea modificar los datos actuales?");
-if(confirmar == JOptionPane.YES_OPTION){
-    //Creamos objeto tipo Connection  para establecer conexion con bd  
-java.sql.Connection conectar = null;    
-PreparedStatement pst = null;
-
-Conector conex = new Conector();
-  conex.conectar();
-//Creamos la Consulta SQL
-//   ResultSet rs = conex.consulta("UPDATE tbl_carrera SET codigo_tipo_carrera=?, nombre_carrera=?, estado_carrera=?, version=? "
-//                    + "WHERE codigo=?");
-//Establecemos bloque try-catch-finally   
-    try {     
-        String Ssql = "UPDATE tbl_carrera SET codigo_tipo_carrera=?, nombre_carrera=?, estado_carrera=?, version=? "
-                 + "WHERE codigo=?";       
-        pst = conectar.prepareStatement(Ssql);        
-        pst.setInt(1, codigo);
-        pst.setString(2, tipo_carrera);
-        pst.setString(3, nombre);
-        pst.setString(4, estado);
-        pst.setString(5, version);
-              
-        if(pst.executeUpdate() > 0){       
-            JOptionPane.showMessageDialog(null, "Los datos han sido modificados con éxito", "Operación Exitosa", 
-                                          JOptionPane.INFORMATION_MESSAGE);            
-        }else{
-                    JOptionPane.showMessageDialog(null, "No se ha podido realizar la actualización de los datos\n"
-                                          + "Inténtelo nuevamente.", "Error en la operación", 
-                                          JOptionPane.ERROR_MESSAGE);       
-        }   } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "No se ha podido realizar la actualización de los datos\n"
-                                          + "Inténtelo nuevamente.\n"
-                                          + "Error: "+e, "Error en la operación", 
-                                          JOptionPane.ERROR_MESSAGE); }finally{
-        if(conex!=null){  
-            try {
-                
-                conectar.close();
-            
-            } catch (SQLException e) {
-            
-                JOptionPane.showMessageDialog(null, "Error al intentar cerrar la conexión."
-                                          + "Error: "+e, "Error en la operación", 
-                                          JOptionPane.ERROR_MESSAGE);
-}}}}}
+public void Actualizar(Carrera modCarrera){
 
 
-
-//BUSCAR POR CODIGO EN JTABLE
-
-DefaultTableModel ModeloTabla;
-public void Buscar(int valor,  JTable tblcarrera){
-//Array con las columnas del JTable
-    String [] columnas={"codigo", "tipo_carrera", "nombre", "estado", " version"};
-    String [] registro=new String[5];
-    ModeloTabla=new DefaultTableModel(null,columnas);      
-   //Abrimos la conexion
-        java.sql.Connection conectar = null;    
-PreparedStatement pst = null;
-
-Conector conex = new Conector();
-  conex.conectar();
-//Creamos la Consulta SQL
-   ResultSet rs = conex.consulta("SELECT codigo, codigo_tipo_carrera, nombre_carrera, estado_carrera, version FROM tbl_carrera WHERE codigo LIKE '%"+valor+"%'");
-    
-    try {
-        while (rs.next()){
-          
-            registro[0]=rs.getString("codigo");
-            registro[1]=rs.getString("codigo_tipo_carrera");
-            registro[2]=rs.getString("nombre_carrera");
-            registro[3]=rs.getString("estado_carrera");
-            registro[4]=rs.getString("version");
-           
-            ModeloTabla.addRow(registro);
-           
-        }
-        
-        tblcarrera.setModel(ModeloTabla);
-
-    } catch (SQLException e) {
-
-
-        JOptionPane.showMessageDialog(null, e, "Error durante el procedimiento", JOptionPane.ERROR_MESSAGE);
-    
-    
-    }finally{
-
-        if(conectar!=null){
-        
-            try {
-
-                conectar.close();
-
-            } catch (SQLException ex) {
-
-                JOptionPane.showMessageDialog(null, ex, "Error de desconexión", JOptionPane.ERROR_MESSAGE);
-
-            }
-        
-        }
-        
-    }
+ Conector c = new Conector();
+     c.conectar();
+     String prueba="";
+   c.insertar( "UPDATE tbl_carrera SET  codigo_tipo_carrera= "+modCarrera.getTipo_carrera()+",nombre_carrera= '"+modCarrera.getNombre()+"',estado_carrera='"+modCarrera.getEstado()+"', version= "+modCarrera.getVersion()+"  WHERE codigo ="+modCarrera.getCodigo()+";");
+  
 
 }
 
 
 
+//BUSCAR POR CODIGO EN JTABLE
+
+public ArrayList<Carrera> buscarCarrera(String codigo) {
+ //establecer conexion con bd
+  Conector conex = new Conector();
+  conex.conectar();
+  ArrayList<Carrera> miLista = new ArrayList<Carrera>();
+  //crear consulta SQL mediante Resulset
+ ResultSet rs = conex.consulta("SELECT * FROM tbl_carrera WHERE codigo LIKE '%"+ codigo +"%'");
+ //crear Try catch con bucle while para que agregre los datos 
+  try {
+   while (rs.next()) {
+   Carrera aux = new Carrera();
+    aux.setCodigo(Integer.parseInt(rs.getString("codigo")));
+    aux.setTipo_carrera(rs.getString("codigo_tipo_carrera"));
+     aux.setNombre(rs.getString("nombre_carrera"));
+    aux.setEstado(rs.getString("estado_carrera"));
+    aux.setVersion(rs.getString("version"));
+    
+    miLista.add(aux);
+  
+   }
+   rs.close();
+   
+   conex.desconectar();
+ 
+  } catch (SQLException e) {
+   System.out.println(e.getMessage());
+   JOptionPane.showMessageDialog(null, "Error al consultar", "Error",
+     JOptionPane.ERROR_MESSAGE);
+ 
+  }
+  return miLista;
+ }
+// ELIMINA DATOS DE LA TABLA CARRERA
+
+
+public void Eliminar(Carrera deCarrera){
+    Conector c = new Conector();
+     c.conectar();
+     String sql = "DELETE FROM tbl_carrera WHERE codigo ="+deCarrera.getCodigo()+";";
+     c.delDatos(sql);
+     
+ }
 
 
 
