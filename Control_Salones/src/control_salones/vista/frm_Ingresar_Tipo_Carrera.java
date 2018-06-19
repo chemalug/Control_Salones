@@ -6,11 +6,14 @@
 package control_salones.vista;
 
 import control_salones.controlador.Carreracontrolador;
+import control_salones.controlador.Tipo_carreracontrolador;
 import control_salones.datos.Conector;
+import control_salones.modelo.Carrera;
 import control_salones.modelo.Tipo_Carrera;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -118,9 +121,11 @@ Carreracontrolador controla = new Carreracontrolador();
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
     
-  
-    Tipo_Carrera k= new Tipo_Carrera( Integer.parseInt(this.txtCodigo.getText()), this.txtDescripcion.getText());
-  k.insertar();
+Tipo_Carrera p = new Tipo_Carrera(Integer.parseInt(this.txtCodigo.getText()),  this.txtDescripcion.getText());
+ Tipo_carreracontrolador datos = new Tipo_carreracontrolador();
+        datos.Insertar(p);
+          JOptionPane.showMessageDialog(null, "Ingresado Correctamente");
+        dispose();
 
             
     }//GEN-LAST:event_btnGuardarActionPerformed

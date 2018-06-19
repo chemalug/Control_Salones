@@ -67,7 +67,20 @@ public class Carreracontrolador {
   }
   return miLista;
  }
-    
+   //INSERTAR DATOS
+
+public void Insertar(Carrera modCarrera){
+
+
+ Conector c = new Conector();
+     c.conectar();
+//     String prueba="";
+//     prueba = ( "INSERT INTO  tbl_carrera (codigo, codigo_tipo_carrera, nombre_carrera, estado_carrera, version) VALUE  ("+modCarrera.getCodigo()+", "+modCarrera.getTipo_carrera()+",'"+modCarrera.getNombre()+"','"+modCarrera.getEstado()+"', "+modCarrera.getVersion()+");");
+//    
+  c.insertar( "INSERT INTO  tbl_carrera (codigo, codigo_tipo_carrera, nombre_carrera, estado_carrera, version) VALUE  ("+modCarrera.getCodigo()+", "+modCarrera.getTipo_carrera()+",'"+modCarrera.getNombre()+"','"+modCarrera.getEstado()+"', "+modCarrera.getVersion()+");");
+  
+
+} 
 
 //CONSULTA LOS TIPOS DE DATO PARA LLENAR EL JCOMBOBOX
 public void consultar_tipo(JComboBox cbxTipocarrera){

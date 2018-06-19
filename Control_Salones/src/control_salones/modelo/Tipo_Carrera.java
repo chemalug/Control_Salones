@@ -50,17 +50,5 @@ public class Tipo_Carrera {
         return descripcion ;
     }
     
-    public void insertar(){
-        String Sql = this.toSqlInsert();
-        Conector c1 = new Conector();
-         c1.consultaVacia(Sql);
-        
-    }
-
-
-    private String toSqlInsert() {
-        String resultado = "INSERT INTO tbl_tipo_carrera(codigo, descripcion) VALUES ('" + this.codigo+  "','" + this.descripcion+  "');";
-        return resultado;
-    }
-     
+  
 }

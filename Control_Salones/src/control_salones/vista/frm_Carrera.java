@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package control_salones.vista;
+import control_salones.controlador.Carrera_modulocontrolador;
 import control_salones.controlador.Carreracontrolador;
 import control_salones.datos.Conector;
 import control_salones.modelo.Carrera;
+import control_salones.modelo.Carrera_Modulo;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.sql.PreparedStatement;
@@ -53,7 +55,7 @@ public class frm_Carrera extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_modulo = new javax.swing.JTable();
         btnModificar1 = new javax.swing.JButton();
         btnAgregar1 = new javax.swing.JButton();
         btnEliminar1 = new javax.swing.JButton();
@@ -107,7 +109,7 @@ public class frm_Carrera extends javax.swing.JFrame {
         jLabel3.setText("Catálogo de Carrera");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(331, 60, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_modulo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -118,9 +120,9 @@ public class frm_Carrera extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tbl_modulo);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 490, 660, 120));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 890, 130));
 
         btnModificar1.setText("Modificar");
         btnModificar1.addActionListener(new java.awt.event.ActionListener() {
@@ -157,6 +159,11 @@ public class frm_Carrera extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblCarrera.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCarreraMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblCarrera);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 810, 140));
@@ -238,98 +245,23 @@ eliminar.setVisible(true);
         "Debe seleccionar una fila de la tabla" ); 
      }                                         
        
-//        try{
-//    int fila= tblCarrera.getSelectedRow();
-//    String sql="delete from tlb_carrera where id="+tblCarrera.getValueAt(fila,0);
-//    java.sql.Connection conectar = null;    
-//PreparedStatement pst = null;
-//
-//Conector conex = new Conector();
-//  conex.conectar();
-//       try{
-//
-//                String sql = "DELETE FROM tbl_carrera WHERE codigo =?";
-//            
-//                if(pst.executeUpdate() > 0){
-//   
-// 
-//        
-//        JOptionPane.showMessageDialog(null, "datos eliminados");
-//        
-//    }
-//}catch(Exception e){
-//    JOptionPane.showMessageDialog(null, "error"+e.getMessage());
-//}
-//       
-//       
-//       
+     
        
        
     }//GEN-LAST:event_btnEliminar1ActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        
-        //MUESTRA DATOS EN JTABLE POR MEDIO DEL METODO 
-        //definir nombres de columna
-        Object [] cols = { "codigo", "tipo_carrera", "nombre", "estado", " version"};
-        //crear arrayList
-      ArrayList<Carrera> miLista = new ArrayList<Carrera>();
-      Carreracontrolador control = new Carreracontrolador();
-      miLista = control.ConsultarCarrera();
-      tblCarrera.getModel();
-      //creamos Object para agregar las filas de datos 
-      Object[][] data = new Object[miLista.size()][cols.length];
-        int rowCount = 0;
-        for(Carrera c : miLista){
-            data[rowCount][0] = c.getCodigo();
-            data[rowCount][1] = c.getTipo_carrera();
-            data[rowCount][2] = c.getNombre();
-            data[rowCount][3] = c.getEstado();
-            data[rowCount][4] = c.getVersion();
-            rowCount++;
-        }
-        DefaultTableModel model = new DefaultTableModel(data, cols);
-        tblCarrera.setModel(model);
-        
-        model.addTableModelListener(new TableModelListener() {
-         @Override
-         public void tableChanged(TableModelEvent e) {
-             System.out.println(tblCarrera.getModel().getValueAt(tblCarrera.getSelectedRow(), 0));
-         }
-     });
-       // TERMINA MOSTRAR DATOS EN JTABLE
-    
+     Mostrar();
 
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
-           Object [] cols = { "codigo", "tipo_carrera", "nombre", "estado", " version"};
-        //crear arrayList
-      ArrayList<Carrera> miLista = new ArrayList<Carrera>();
-      Carreracontrolador control = new Carreracontrolador();
-      miLista = control.ConsultarCarrera();
-      tblCarrera.getModel();
-      //creamos Object para agregar las filas de datos 
-      Object[][] data = new Object[miLista.size()][cols.length];
-        int rowCount = 0;
-        for(Carrera c : miLista){
-            data[rowCount][0] = c.getCodigo();
-            data[rowCount][1] = c.getTipo_carrera();
-            data[rowCount][2] = c.getNombre();
-            data[rowCount][3] = c.getEstado();
-            data[rowCount][4] = c.getVersion();
-            rowCount++;
-        }
-        DefaultTableModel model = new DefaultTableModel(data, cols);
-        tblCarrera.setModel(model);
-        
-        model.addTableModelListener(new TableModelListener() {
-         @Override
-         public void tableChanged(TableModelEvent e) {
-             System.out.println(tblCarrera.getModel().getValueAt(tblCarrera.getSelectedRow(), 0));
-         }
-     });
+Mostrar();          
     }//GEN-LAST:event_btnBuscar1ActionPerformed
+
+    private void tblCarreraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCarreraMouseClicked
+        MostrarModulos();
+    }//GEN-LAST:event_tblCarreraMouseClicked
 public void buscar() {
        //definir nombres de columna
         Object [] cols = { "codigo", "tipo_carrera", "nombre", "estado", " version"};
@@ -360,6 +292,69 @@ public void buscar() {
      });
     
     }
+public void Mostrar(){
+    Object [] cols = { "codigo", "tipo_carrera", "nombre", "estado", " version"};
+        //crear arrayList
+      ArrayList<Carrera> miLista = new ArrayList<Carrera>();
+      Carreracontrolador control = new Carreracontrolador();
+      miLista = control.ConsultarCarrera();
+      tblCarrera.getModel();
+      //creamos Object para agregar las filas de datos 
+      Object[][] data = new Object[miLista.size()][cols.length];
+        int rowCount = 0;
+        for(Carrera c : miLista){
+            data[rowCount][0] = c.getCodigo();
+            data[rowCount][1] = c.getTipo_carrera();
+            data[rowCount][2] = c.getNombre();
+            data[rowCount][3] = c.getEstado();
+            data[rowCount][4] = c.getVersion();
+            rowCount++;
+        }
+        DefaultTableModel model = new DefaultTableModel(data, cols);
+        tblCarrera.setModel(model);
+        
+        model.addTableModelListener(new TableModelListener() {
+         @Override
+         public void tableChanged(TableModelEvent e) {
+             System.out.println(tblCarrera.getModel().getValueAt(tblCarrera.getSelectedRow(), 0));
+         }
+     });
+}
+public void MostrarModulos(){
+    Object [] cols = { "codigo", "especialidad", "Nombre Evento", "Tipo", " Nivel Competencia", "Duracion", "Estado", "Carrera"};
+        //crear arrayList
+      ArrayList<Carrera_Modulo> miLista = new ArrayList<Carrera_Modulo>();
+      Carrera_modulocontrolador control = new Carrera_modulocontrolador();
+      DefaultTableModel tm = (DefaultTableModel) tblCarrera.getModel();
+
+
+
+//        String dato=String.valueOf(tm.getValueAt(tblCarrera.getSelectedRow(),0));
+//   miLista = control.ConsultarModulo(fila);
+      tbl_modulo.getModel();
+      //creamos Object para agregar las filas de datos 
+      Object[][] data = new Object[miLista.size()][cols.length];
+        int rowCount = 0;
+        for(Carrera_Modulo c : miLista){
+            data[rowCount][0] = c.getCodigo();
+            data[rowCount][1] = c.getCodigo_especialidad();
+            data[rowCount][2] = c.getNombre_evento();
+            data[rowCount][3] = c.getTipo_evento();
+            data[rowCount][4] = c.getNivel_competencia();
+            data[rowCount][4] = c.getDuracion_modulo();
+            data[rowCount][4] = c.getEstado_modulo();
+            data[rowCount][4] = c.getCodigo_carrera();
+            rowCount++;
+        }
+        DefaultTableModel model = new DefaultTableModel(data, cols);
+        tbl_modulo.setModel(model);
+        
+        model.addTableModelListener(new TableModelListener() {
+         @Override
+         public void tableChanged(TableModelEvent e) {
+             System.out.println(tbl_modulo.getModel().getValueAt(tbl_modulo.getSelectedRow(), 0));
+         }
+     });}
     /**
      * @param args the command line arguments
      */
@@ -408,8 +403,8 @@ public void buscar() {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable tblCarrera;
+    private javax.swing.JTable tbl_modulo;
     private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
 }

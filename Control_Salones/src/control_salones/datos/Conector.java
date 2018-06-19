@@ -87,17 +87,7 @@ private String cadena ="";
         return resultado;
     }
      
-      public void consultaVacia(String sql) {
-        this.conectar();
-        try {
-            Statement st = c.createStatement();
-            st.execute(sql);
-        } catch (SQLException ex) {
-            Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        this.desconectar();
-    }
+     
       
       public boolean delDatos (String consulta){
         int resultado;
