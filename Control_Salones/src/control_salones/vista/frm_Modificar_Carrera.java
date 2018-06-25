@@ -70,7 +70,7 @@ public class frm_Modificar_Carrera extends javax.swing.JFrame {
 
         btnCancelar.setText("Cancelar");
 
-        btnGuardar.setText("Guardar");
+        btnGuardar.setText("Modificar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -176,6 +176,10 @@ public class frm_Modificar_Carrera extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
  Carrera modificar = new Carrera();
+ if(cbxTipocarrera.getSelectedItem() instanceof String){
+      JOptionPane.showMessageDialog(this, "Elija una opcion correcta en Tipo de Carrera", "ERROR", JOptionPane.WARNING_MESSAGE);
+      return;
+  }
         modificar.setCodigo(Integer.parseInt(txtCodigo.getText()));
         modificar.setTipo_carrera(String.valueOf(((Tipo_Carrera)this.cbxTipocarrera.getSelectedItem()).getCodigo()));
         modificar.setNombre(txtNombre.getText());

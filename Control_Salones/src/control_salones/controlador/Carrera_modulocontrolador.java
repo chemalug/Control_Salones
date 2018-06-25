@@ -24,14 +24,18 @@ public class Carrera_modulocontrolador {
  //establecer conexion con bd
   Conector conex = new Conector();
   conex.conectar();
+
   ArrayList<Carrera_Modulo> miLista = new ArrayList<Carrera_Modulo>();
   //crear consulta SQL mediante Resulset
- ResultSet rs = conex.consulta("SELECT evento.codigo_especialidad, evento.nombre_evento, evento.tipo_evento, evento.nivel_competencia, evento.duracion_modulo, evento.estado_modulo, modulo.codigo_carrera FROM tbl_catalogo_evento as evento, tbl_carrera_modulo as modulo WHERE modulo.codigo LIKE '%"+ codigo +"%'");
- //crear Try catch con bucle while para que agregre los datos 
+ ResultSet rs = conex.consulta("SELECT evento.codigo_especialidad, evento.nombre_evento, evento.tipo_evento, evento.nivel_competencia, evento.duracion_modulo, evento.estado_modulo, modulo.codigo_carrera FROM tbl_catalogo_evento as evento, tbl_carrera_modulo as modulo WHERE modulo.codigo LIKE 2 ");
+ 
+
+       
+//crear Try catch con bucle while para que agregre los datos 
   try {
    while (rs.next()) {
    Carrera_Modulo aux = new Carrera_Modulo();
-    aux.setCodigo(Integer.parseInt(rs.getString("codigo")));
+    
     aux.setCodigo_especialidad(Integer.parseInt(rs.getString("codigo_especialidad")));
      aux.setNombre_evento(rs.getString("nombre_evento"));
      aux.setTipo_evento(Integer.parseInt(rs.getString("tipo_evento")));

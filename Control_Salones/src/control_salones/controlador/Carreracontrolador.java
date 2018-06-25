@@ -184,7 +184,9 @@ public ArrayList<Carrera> buscarCarrera(String codigo) {
   conex.conectar();
   ArrayList<Carrera> miLista = new ArrayList<Carrera>();
   //crear consulta SQL mediante Resulset
+  
  ResultSet rs = conex.consulta("SELECT * FROM tbl_carrera WHERE codigo LIKE '%"+ codigo +"%'");
+
  //crear Try catch con bucle while para que agregre los datos 
   try {
    while (rs.next()) {

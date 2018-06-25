@@ -28,7 +28,7 @@ public class frm_Carrera extends javax.swing.JFrame {
 
     private TableModel ModeloTabla;
      Carreracontrolador carrcontrol = new Carreracontrolador();
-    String codigo = "";
+   public int codigo ;
 
     /**
      * Creates new form frm_Carrera
@@ -47,21 +47,17 @@ public class frm_Carrera extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         btnRefrescar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tbl_modulo = new javax.swing.JTable();
         btnModificar1 = new javax.swing.JButton();
-        btnAgregar1 = new javax.swing.JButton();
         btnEliminar1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCarrera = new javax.swing.JTable();
         btnBuscar1 = new javax.swing.JButton();
+        btnModulos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
@@ -77,10 +73,6 @@ public class frm_Carrera extends javax.swing.JFrame {
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Módulos de Carrera");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 430, -1, -1));
 
         jLabel2.setText("Codigo:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 160, -1, -1));
@@ -100,29 +92,11 @@ public class frm_Carrera extends javax.swing.JFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 350, 80, 30));
-
-        btnEliminar.setText("Eliminar");
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 630, 80, 30));
+        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 500, 80, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Catálogo de Carrera");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(331, 60, -1, -1));
-
-        tbl_modulo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(tbl_modulo);
-
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 890, 130));
 
         btnModificar1.setText("Modificar");
         btnModificar1.addActionListener(new java.awt.event.ActionListener() {
@@ -130,15 +104,7 @@ public class frm_Carrera extends javax.swing.JFrame {
                 btnModificar1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnModificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(301, 350, 90, 30));
-
-        btnAgregar1.setText("Agregar");
-        btnAgregar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnAgregar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 630, 80, 30));
+        getContentPane().add(btnModificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 500, 90, 30));
 
         btnEliminar1.setText("Eliminar");
         btnEliminar1.addActionListener(new java.awt.event.ActionListener() {
@@ -146,7 +112,7 @@ public class frm_Carrera extends javax.swing.JFrame {
                 btnEliminar1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 350, 80, 30));
+        getContentPane().add(btnEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 500, 80, 30));
 
         tblCarrera.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -166,7 +132,7 @@ public class frm_Carrera extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblCarrera);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 810, 140));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 910, 270));
 
         btnBuscar1.setText("Refrescar");
         btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
@@ -175,6 +141,14 @@ public class frm_Carrera extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, 80, 30));
+
+        btnModulos.setText("Ver Modulos");
+        btnModulos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModulosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnModulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 500, 100, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -185,10 +159,6 @@ public class frm_Carrera extends javax.swing.JFrame {
         ingresar.setVisible(true);
  
     }//GEN-LAST:event_btnAgregarActionPerformed
-
-    private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
-     
-    }//GEN-LAST:event_btnAgregar1ActionPerformed
 
     private void btnModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificar1ActionPerformed
       frm_Modificar_Carrera modificar = new frm_Modificar_Carrera();
@@ -260,8 +230,24 @@ Mostrar();
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
     private void tblCarreraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCarreraMouseClicked
-        MostrarModulos();
+       
     }//GEN-LAST:event_tblCarreraMouseClicked
+
+    private void btnModulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModulosActionPerformed
+ frm_Modulos modulo = new frm_Modulos();
+ modulo.setVisible(true);
+        if (tblCarrera.getSelectedRowCount()>0){
+   
+       codigo=(Integer.parseInt(tblCarrera.getValueAt(tblCarrera.getSelectedRow(), 0).toString()));
+            
+       modulo.setVisible(true);
+     } else{
+         JOptionPane.showMessageDialog(null,
+        "Debe seleccionar una fila de la tabla" ); 
+     }                                         
+       
+        
+    }//GEN-LAST:event_btnModulosActionPerformed
 public void buscar() {
        //definir nombres de columna
         Object [] cols = { "codigo", "tipo_carrera", "nombre", "estado", " version"};
@@ -292,6 +278,7 @@ public void buscar() {
      });
     
     }
+
 public void Mostrar(){
     Object [] cols = { "codigo", "tipo_carrera", "nombre", "estado", " version"};
         //crear arrayList
@@ -320,41 +307,7 @@ public void Mostrar(){
          }
      });
 }
-public void MostrarModulos(){
-    Object [] cols = { "codigo", "especialidad", "Nombre Evento", "Tipo", " Nivel Competencia", "Duracion", "Estado", "Carrera"};
-        //crear arrayList
-      ArrayList<Carrera_Modulo> miLista = new ArrayList<Carrera_Modulo>();
-      Carrera_modulocontrolador control = new Carrera_modulocontrolador();
-      DefaultTableModel tm = (DefaultTableModel) tblCarrera.getModel();
 
-
-
-//        String dato=String.valueOf(tm.getValueAt(tblCarrera.getSelectedRow(),0));
-//   miLista = control.ConsultarModulo(fila);
-      tbl_modulo.getModel();
-      //creamos Object para agregar las filas de datos 
-      Object[][] data = new Object[miLista.size()][cols.length];
-        int rowCount = 0;
-        for(Carrera_Modulo c : miLista){
-            data[rowCount][0] = c.getCodigo();
-            data[rowCount][1] = c.getCodigo_especialidad();
-            data[rowCount][2] = c.getNombre_evento();
-            data[rowCount][3] = c.getTipo_evento();
-            data[rowCount][4] = c.getNivel_competencia();
-            data[rowCount][4] = c.getDuracion_modulo();
-            data[rowCount][4] = c.getEstado_modulo();
-            data[rowCount][4] = c.getCodigo_carrera();
-            rowCount++;
-        }
-        DefaultTableModel model = new DefaultTableModel(data, cols);
-        tbl_modulo.setModel(model);
-        
-        model.addTableModelListener(new TableModelListener() {
-         @Override
-         public void tableChanged(TableModelEvent e) {
-             System.out.println(tbl_modulo.getModel().getValueAt(tbl_modulo.getSelectedRow(), 0));
-         }
-     });}
     /**
      * @param args the command line arguments
      */
@@ -392,19 +345,15 @@ public void MostrarModulos(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnAgregar1;
     private javax.swing.JButton btnBuscar1;
-    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnEliminar1;
     private javax.swing.JButton btnModificar1;
+    private javax.swing.JButton btnModulos;
     private javax.swing.JButton btnRefrescar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblCarrera;
-    private javax.swing.JTable tbl_modulo;
     private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
 }
