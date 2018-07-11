@@ -16,8 +16,7 @@ public class ClienteControlador {
     public void agregarCliente(Cliente cliente){
         Conector c = new Conector();
         c.conectar();
-        c.insertar("Insert into tbl_clientes (codigo, nombre,nit) values (" + String.valueOf(cliente.getCodigo()) + ",'" + cliente.getNombre()  +"','" + cliente.getNit() + "');");
+        c.preparar("Insert into tbl_clientes (codigo, nombre,nit) values (" + String.valueOf(cliente.getCodigo()) + ",'" + cliente.getNombre()  +"','" + cliente.getNit() + "');");
         c.desconectar();
-        System.out.println("Hola mundo");
     }
 }
