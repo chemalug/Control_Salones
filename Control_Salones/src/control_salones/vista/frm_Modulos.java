@@ -88,7 +88,7 @@ public void Modulos() {
              data[rowCount][3] = c.getNivel_competencia();
               data[rowCount][4] = c.getDuracion_modulo();
                data[rowCount][5] = c.getEstado_modulo();
-               data[rowCount][6] = c.getCodigo_carrera();
+               data[rowCount][6] = c.getNombre_carrera();
             rowCount++;
         }
         DefaultTableModel model = new DefaultTableModel(data, cols);

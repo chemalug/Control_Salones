@@ -27,10 +27,10 @@ public class Carrera_modulocontrolador {
 
   ArrayList<Carrera_Modulo> miLista = new ArrayList<Carrera_Modulo>();
   //crear consulta SQL mediante Resulset
- ResultSet rs = conex.consulta("SELECT evento.codigo_especialidad, evento.nombre_evento, evento.tipo_evento, evento.nivel_competencia, evento.duracion_modulo, evento.estado_modulo, modulo.codigo_carrera FROM tbl_catalogo_evento as evento, tbl_carrera_modulo as modulo WHERE modulo.codigo LIKE 2 ");
- 
 
-       
+ResultSet rs = conex.consulta("SELECT evento.codigo_especialidad, evento.nombre_evento, evento.tipo_evento, evento.nivel_competencia, evento.duracion_modulo, evento.estado_modulo, car.nombre_carrera FROM tbl_carrera as car INNER JOIN  tbl_carrera_modulo as modulo ON car.codigo= modulo.codigo_carrera INNER JOIN tbl_catalogo_evento as evento ON evento.codigo =modulo.codigo  WHERE car.codigo  LIKE '%"+ codigo +"%'");
+String cod = "SELECT evento.codigo_especialidad, evento.nombre_evento, evento.tipo_evento, evento.nivel_competencia, evento.duracion_modulo, evento.estado_modulo, car.nombre_carrera FROM tbl_carrera as car INNER JOIN  tbl_carrera_modulo as modulo ON car.codigo= modulo.codigo_carrera INNER JOIN tbl_catalogo_evento as evento ON evento.codigo =modulo.codigo  WHERE car.codigo  LIKE '%"+ codigo +"%'";
+        System.out.println(cod);
 //crear Try catch con bucle while para que agregre los datos 
   try {
    while (rs.next()) {
@@ -42,7 +42,7 @@ public class Carrera_modulocontrolador {
      aux.setNivel_competencia(Integer.parseInt(rs.getString("nivel_competencia")));
       aux.setDuracion_modulo(Integer.parseInt(rs.getString("duracion_modulo")));
        aux.setEstado_modulo(Integer.parseInt(rs.getString("estado_modulo")));
-        aux.setCodigo_carrera(Integer.parseInt(rs.getString("codigo_carrera")));
+        aux.setNombre_carrera(rs.getString("nombre_carrera"));
     
     miLista.add(aux);
    }

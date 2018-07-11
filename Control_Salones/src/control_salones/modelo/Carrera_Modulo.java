@@ -17,11 +17,13 @@ public class Carrera_Modulo {
     public int nivel_competencia;
     public int duracion_modulo;
     public int estado_modulo;
+    public String nombre_carrera;
+    
 
     public Carrera_Modulo() {
     }
 
-    public Carrera_Modulo(int codigo, int codigo_carrera, int codigo_especialidad, String nombre_evento, int tipo_evento, int nivel_competencia, int duracion_modulo, int estado_modulo) {
+    public Carrera_Modulo(int codigo, int codigo_carrera, int codigo_especialidad, String nombre_evento, int tipo_evento, int nivel_competencia, int duracion_modulo, int estado_modulo, String nombre_carrera) {
         this.codigo = codigo;
         this.codigo_carrera = codigo_carrera;
         this.codigo_especialidad = codigo_especialidad;
@@ -30,6 +32,15 @@ public class Carrera_Modulo {
         this.nivel_competencia = nivel_competencia;
         this.duracion_modulo = duracion_modulo;
         this.estado_modulo = estado_modulo;
+        this.nombre_carrera=nombre_carrera;
+    }
+
+    public String getNombre_carrera() {
+        return nombre_carrera;
+    }
+
+    public void setNombre_carrera(String nombre_carrera) {
+        this.nombre_carrera = nombre_carrera;
     }
 
     public int getCodigo() {

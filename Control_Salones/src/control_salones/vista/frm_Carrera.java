@@ -28,7 +28,7 @@ public class frm_Carrera extends javax.swing.JFrame {
 
     private TableModel ModeloTabla;
      Carreracontrolador carrcontrol = new Carreracontrolador();
-   public int codigo ;
+  public int codigo;
 
     /**
      * Creates new form frm_Carrera
@@ -235,18 +235,19 @@ Mostrar();
 
     private void btnModulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModulosActionPerformed
  frm_Modulos modulo = new frm_Modulos();
- modulo.setVisible(true);
-        if (tblCarrera.getSelectedRowCount()>0){
-   
-       codigo=(Integer.parseInt(tblCarrera.getValueAt(tblCarrera.getSelectedRow(), 0).toString()));
-            
-       modulo.setVisible(true);
+
+//       
+
+                         if (tblCarrera.getSelectedRowCount()>0){
+                        codigo =Integer.parseInt(tblCarrera.getValueAt(tblCarrera.getSelectedRow(),0).toString());
+                             System.out.println(codigo);
+                        modulo.setVisible(true);
      } else{
          JOptionPane.showMessageDialog(null,
         "Debe seleccionar una fila de la tabla" ); 
-     }                                         
+ }                                         
        
-        
+        System.out.println(codigo);
     }//GEN-LAST:event_btnModulosActionPerformed
 public void buscar() {
        //definir nombres de columna
