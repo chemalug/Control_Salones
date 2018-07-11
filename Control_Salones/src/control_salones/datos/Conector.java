@@ -1,13 +1,17 @@
 package control_salones.datos;
 
+import control_salones.modelo.Salon;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Conector {
+
     private static final String CLASE = "com.mysql.jdbc.Driver";
 
     private final String host = "35.232.63.100";
@@ -18,41 +22,52 @@ public class Conector {
 
     private Connection link;
     private Statement statement;
-
-    private String mensajeError;
-
+    public ResultSet resultado;
+    private PreparedStatement ps;
+    public String mensajeError;
 
     public Conector() {
         this.mensajeError = "";
         this.url = "jdbc:mysql://" + this.host + "/" + this.nombre;
     }
 
-    public boolean conectar() {
+    public void conectar() {
         try {
             Class.forName(CLASE).newInstance();
             this.link = DriverManager.getConnection(this.url, this.usuario, this.clave);
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
             this.mensajeError = e.getMessage();
-            return false;
         }
-        return true;
     }
-    public boolean insertar(String consulta) {
 
-        int resultado;
-
+    public PreparedStatement preparar(String sql) {
+        this.conectar();
         try {
-
-            this.statement = this.link.createStatement();
-            resultado = this.statement.executeUpdate(consulta);
-
-        } catch (SQLException e) {
-            this.mensajeError = e.getMessage();
-            return false;
+            ps = link.prepareStatement(sql);
+        } catch (SQLException ex) {
+            System.out.println(ex);
         }
-        return (resultado > 0);
+        return ps;
     }
- 
+
+    public ResultSet consultaRegistro(String sql) {
+        try {
+            this.statement = this.link.createStatement();
+            resultado = this.statement.executeQuery(sql);
+        } catch (SQLException ex) {
+            this.mensajeError = ex.getMessage();
+        }
+        return resultado;
+    }
+
+    public ResultSet consultarDatos(String sql) {
+        ResultSet result = null;
+        Conector c = new Conector();
+        c.conectar();
+        result = c.consultaRegistro(sql);
+        return result;
+    }
+
     public boolean desconectar() {
         try {
             this.link.close();
@@ -66,5 +81,5 @@ public class Conector {
     public String getMensajeError() {
         return mensajeError;
     }
-    
+
 }
