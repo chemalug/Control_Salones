@@ -170,7 +170,7 @@ public class MainAppView extends javax.swing.JFrame {
     }//GEN-LAST:event_menuBtnSalirActionPerformed
 
     private void menuBtnPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBtnPruebaActionPerformed
-        abrirVentana(new VentanaPrueba());
+       //abrirVentana(new VentanaPrueba());
     }//GEN-LAST:event_menuBtnPruebaActionPerformed
 
     private void menuBtnCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBtnCarrerasActionPerformed
