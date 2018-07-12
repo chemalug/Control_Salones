@@ -1,6 +1,6 @@
 package control_salones.controlador;
 
-import control_salones.datos.Conector;
+import control_salones.datos.Database;
 import control_salones.modelo.Cliente;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,10 +12,8 @@ public class ClienteControlador {
         ArrayList<Object> args = new ArrayList<Object>();
         args.add("Yaque");
         args.add("44778899");
-        args.add(14);
-        
-        Conector c = new Conector();
-        c.procedimiento("sp_insertar_cliente", args);
+        args.add(14);    
+        Database.procedimiento("sp_insertar_cliente", args);
         
     }
 }

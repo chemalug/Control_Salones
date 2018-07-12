@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import static jdk.nashorn.internal.objects.NativeArray.map;
 
-public class Conector {
+public class Database {
 
     private static final String CLASE = "com.mysql.jdbc.Driver";
 
@@ -32,7 +32,7 @@ public class Conector {
 
     private static String mensajeError;
 
-    public static void conectar() {
+    public static void Database() {
         mensajeError = "";
         url = "jdbc:mysql://" + host + "/" + nombre;
         try {
@@ -61,13 +61,13 @@ public class Conector {
 
     public static ResultSet consultar(String consulta) {
         try {
-            conectar();
+            Database();
             ResultSet respuesta = null;
             statement = link.createStatement();
             respuesta = statement.executeQuery(consulta);
             return respuesta;
         } catch (SQLException ex) {
-            Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -82,7 +82,7 @@ public class Conector {
         parametros = parametros.substring(0, parametros.length() - 1);
         String sentencia = "{call " + procedimiento + "(" + parametros + ")}";
         System.out.println(sentencia);
-        conectar();
+        Database();
         CallableStatement ctm;
         try {
             ctm = link.prepareCall(sentencia);
@@ -93,7 +93,7 @@ public class Conector {
             }
             ctm.execute();
         } catch (SQLException ex) {
-            Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         desconectar();
@@ -110,7 +110,7 @@ public class Conector {
         parametros = parametros.substring(0, parametros.length() - 1);
         String sentencia = "{call " + procedimiento + "(" + parametros + ")}";
         ResultSet respuesta = null;
-        conectar();
+        Database();
         CallableStatement ctm;
         try {
             ctm = link.prepareCall(sentencia);
@@ -123,7 +123,7 @@ public class Conector {
             ctm.execute();
             respuesta = ctm.getResultSet();
         } catch (SQLException ex) {
-            Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         

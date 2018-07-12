@@ -1,7 +1,7 @@
 package control_salones.controlador;
 
 
-import control_salones.datos.Conector;
+import control_salones.datos.Database;
 import control_salones.modelo.CalendarioSalon;
 import control_salones.modelo.EstadoEvento;
 import control_salones.modelo.Evento;
@@ -24,7 +24,7 @@ public class AsignacionEventoControllador {
 
     public ArrayList<Salon> obtenerSalones() {
         ArrayList<Salon> listado = new ArrayList<>();
-        ResultSet rs = Conector.consultar("Select * from tbl_salon");
+        ResultSet rs = Database.consultar("Select * from tbl_salon");
         try {
             while (rs.next()) {
                 Salon aux = new Salon();
@@ -36,14 +36,14 @@ public class AsignacionEventoControllador {
         } catch (SQLException ex) {
             Logger.getLogger(AsignacionEventoControllador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Conector.desconectar();
+        Database.desconectar();
         System.out.println(listado);
         return listado;
     }
 
     public ArrayList<Horario> obtenerHorario() {
         ArrayList<Horario> listado = new ArrayList<>();
-        ResultSet rs = Conector.consultar("Select * from tbl_horario");
+        ResultSet rs = Database.consultar("Select * from tbl_horario");
         try {
             while (rs.next()) {
                 Horario aux = new Horario(rs.getInt(1),
@@ -60,7 +60,7 @@ public class AsignacionEventoControllador {
         ArrayList<Horario> listado = new ArrayList<>();
         String sql = "Select * from tbl_horario where hora_inicio between '" + tiempo_1 + "' and '" + tiempo_2 + "'";
         System.out.println(sql);
-        ResultSet rs = Conector.consultar(sql);
+        ResultSet rs = Database.consultar(sql);
         try {
             while (rs.next()) {
                 Horario aux = new Horario(rs.getInt(1),
@@ -76,7 +76,7 @@ public class AsignacionEventoControllador {
 
     public ArrayList<Fechas> obtenerFechas() {
         ArrayList<Fechas> listado = new ArrayList<>();
-        ResultSet rs = Conector.consultar("Select * from tbl_fechas");
+        ResultSet rs = Database.consultar("Select * from tbl_fechas");
         try {
             while (rs.next()) {
                 Fechas aux = new Fechas(rs.getInt(1),
@@ -97,7 +97,7 @@ public class AsignacionEventoControllador {
         args.add(fechaF);
         args.add(horaI);
         args.add(horaF);
-        ResultSet rs = Conector.procedimientoConsulta("sp_consultar_calendario_salon",args);
+        ResultSet rs = Database.procedimientoConsulta("sp_consultar_calendario_salon",args);
         try {
             while (rs.next()) {
                 CalendarioSalon aux = new CalendarioSalon(rs.getInt(1),
@@ -108,7 +108,7 @@ public class AsignacionEventoControllador {
         } catch (SQLException ex) {
             Logger.getLogger(AsignacionEventoControllador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Conector.desconectar();
+        Database.desconectar();
         System.out.println(listado);
         return listado;
     }
@@ -117,7 +117,7 @@ public class AsignacionEventoControllador {
         ArrayList<Object> args = new ArrayList<>();
         args.add(fechaI);
         args.add(fechaF);
-        ResultSet rs = Conector.procedimientoConsulta("sp_consultarFechas",args);
+        ResultSet rs = Database.procedimientoConsulta("sp_consultarFechas",args);
         try {
             while (rs.next()) {
                 Fechas aux = new Fechas(rs.getInt(1),
@@ -128,12 +128,12 @@ public class AsignacionEventoControllador {
         } catch (SQLException ex) {
             Logger.getLogger(AsignacionEventoControllador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Conector.desconectar();
+        Database.desconectar();
         return listado;
     }
     public ArrayList<Evento> obtenerEventos(){
         ArrayList<Evento> listado = new ArrayList<>();
-        ResultSet rs = Conector.consultar("Select * from tbl_catalogo_evento");
+        ResultSet rs = Database.consultar("Select * from tbl_catalogo_evento");
         try {
             while (rs.next()) {
                 Evento aux = new Evento(rs.getInt(1), rs.getInt(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7));
@@ -147,7 +147,7 @@ public class AsignacionEventoControllador {
     }
     public ArrayList<Instructor> obtenerInstructor(){
         ArrayList<Instructor> listado = new ArrayList<>();
-        ResultSet rs = Conector.consultar("Select * from tbl_instructor");
+        ResultSet rs = Database.consultar("Select * from tbl_instructor");
         try {
             while (rs.next()) {
                 Instructor aux = new Instructor(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6));
@@ -161,7 +161,7 @@ public class AsignacionEventoControllador {
     }
     public ArrayList<EstadoEvento> obtenerEstadoEvento(){
         ArrayList<EstadoEvento> listado = new ArrayList<>();
-        ResultSet rs = Conector.consultar("Select * from tbl_estado_evento");
+        ResultSet rs = Database.consultar("Select * from tbl_estado_evento");
         try{
             while(rs.next()){
                 EstadoEvento aux = new EstadoEvento(rs.getInt(1), rs.getString(2));
@@ -186,7 +186,7 @@ public class AsignacionEventoControllador {
             args.add(currentTime);
             args.add(0);
             args.add("");
-            Conector.procedimiento("sp_insertar_fechas", args);
+            Database.procedimiento("sp_insertar_fechas", args);
         }
     }
 }
