@@ -41,6 +41,15 @@ public class Horario {
         this.hora_fin = hora_fin;
     }
 
+    public Horario() {
+    }
+
+    public Horario(int codigo, Time hora_inicio, Time hora_fin) {
+        this.codigo = codigo;
+        this.hora_inicio = hora_inicio;
+        this.hora_fin = hora_fin;
+    }
+
     @Override
     public String toString() {
         return "Horario{" + "codigo=" + codigo + ", hora_inicio=" + hora_inicio + ", hora_fin=" + hora_fin + '}';

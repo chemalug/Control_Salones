@@ -7,6 +7,9 @@ package control_salones.vista;
 
 import control_salones.controlador.ClienteControlador;
 import control_salones.modelo.Cliente;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -122,6 +125,7 @@ public class frm_Cliente extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
         //Recoje los datos del cliente
+        //Envía los datos del cliente al método que agrega los clientes a la base de datos
         Cliente cliente = new Cliente();
         cliente.setCodigo(Integer.parseInt(txtCodigo.getText()));
         cliente.setNombre(txtNombre.getText());
