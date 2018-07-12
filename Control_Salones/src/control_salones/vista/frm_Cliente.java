@@ -125,14 +125,14 @@ public class frm_Cliente extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
         //Recoje los datos del cliente
-        
+        //Envía los datos del cliente al método que agrega los clientes a la base de datos
+        Cliente cliente = new Cliente();
+        cliente.setCodigo(Integer.parseInt(txtCodigo.getText()));
+        cliente.setNombre(txtNombre.getText());
+        cliente.setNit(txtNit.getText());
         //Envía los datos del cliente al método que agrega los clientes a la base de datos
         ClienteControlador clienteControlador = new ClienteControlador();
-        try {
-            clienteControlador.agregarCliente();
-        } catch (SQLException ex) {
-            Logger.getLogger(frm_Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        clienteControlador.agregarCliente(cliente);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
@@ -161,7 +161,8 @@ public class frm_Cliente extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(frm_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
+     
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

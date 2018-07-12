@@ -6,10 +6,11 @@
 package control_salones.modelo;
 
 import java.sql.Time;
+import java.time.LocalTime;
 
 /**
  *
- * @author efiapp
+ * @author u-jona
  */
 public class Horario {
     private int codigo;
@@ -51,7 +52,7 @@ public class Horario {
 
     @Override
     public String toString() {
-        return hora_inicio.toString() ;
+        return "Horario{" + "codigo=" + codigo + ", hora_inicio=" + hora_inicio + ", hora_fin=" + hora_fin + '}';
     }
-    
+
 }
