@@ -6,7 +6,7 @@
 package control_salones.vista;
 
 import control_salones.modelo.Login;
-import control_salones.datos.Conector;
+import control_salones.datos.J_Conector;
 
 
 /**
@@ -116,7 +116,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void btnLAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLAceptarActionPerformed
         // TODO add your handling code here:
-        Conector con = new Conector();
+        J_Conector con = new J_Conector();
         con.conectar();
         Login log = new Login();
         //Convertir contraseña a String

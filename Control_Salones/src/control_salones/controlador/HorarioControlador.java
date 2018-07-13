@@ -5,7 +5,7 @@
  */
 package control_salones.controlador;
 
-import control_salones.datos.Conector;
+import control_salones.datos.J_Conector;
 import control_salones.modelo.Horario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class HorarioControlador {
     public ArrayList<Horario> consultarHorario(){
         ArrayList<Horario> listado = new ArrayList();
-        Conector con = new Conector();
+        J_Conector con = new J_Conector();
         con.conectar();
         ResultSet rs = con.consultar("SELECT * FROM tbl_horario;");
         

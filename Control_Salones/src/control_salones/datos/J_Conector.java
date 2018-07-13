@@ -15,7 +15,7 @@ import java.sql.Statement;
  *
  * @author u-jona
  */
-public class Conector {
+public class J_Conector {
     
     private static final String CLASE = "com.mysql.cj.jdbc.Driver";
 
@@ -31,7 +31,7 @@ public class Conector {
     private String mensajeError;
 
 
-    public Conector() {
+    public J_Conector() {
         this.mensajeError = "";
         this.url = "jdbc:mysql://" + this.host + "/" + this.nombre;
     }

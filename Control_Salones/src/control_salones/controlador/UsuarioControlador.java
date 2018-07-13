@@ -5,7 +5,7 @@
  */
 package control_salones.controlador;
 
-import control_salones.datos.Conector;
+import control_salones.datos.J_Conector;
 import control_salones.modelo.Usuario;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,7 +22,7 @@ public class UsuarioControlador {
 
     public ArrayList<Usuario> consultarUsuario() {
         ArrayList<Usuario> listado = new ArrayList();
-        Conector con = new Conector();
+        J_Conector con = new J_Conector();
         con.conectar();
         ResultSet rs = con.consultar("SELECT * FROM tbl_usuario");
 
@@ -45,7 +45,7 @@ public class UsuarioControlador {
     }
 
     public void insertarUsuario(Usuario usr) {
-        Conector con = new Conector();
+        J_Conector con = new J_Conector();
         con.conectar();
         con.consultaG("INSERT INTO tbl_usuario (nombre, usuario, password, estado_usuario) VALUES (" + 
         "'" + usr.getNombre() + "','" + usr.getUsuario() + "','" + usr.getPassword() + 
@@ -53,7 +53,7 @@ public class UsuarioControlador {
         con.desconectar();
     }
       public void eliminarUsuario(String codigo) {
-        Conector con = new Conector();
+        J_Conector con = new J_Conector();
         con.conectar();
         con.consultaG("DELETE codigo FROM tbl_usuario WHERE"+"'"+codigo+"';");
         con.desconectar();

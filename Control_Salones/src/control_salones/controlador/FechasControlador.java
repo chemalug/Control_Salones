@@ -5,7 +5,7 @@
  */
 package control_salones.controlador;
 
-import control_salones.datos.Conector;
+import control_salones.datos.J_Conector;
 import control_salones.modelo.Fecha;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +22,7 @@ public class FechasControlador {
     
      public ArrayList<Fecha> consultarFechas(){
         ArrayList<Fecha> listado = new ArrayList();
-        Conector con = new Conector();
+        J_Conector con = new J_Conector();
         con.conectar();
         ResultSet rs = con.consultar("SELECT * FROM tbl_fechas LIMIT 366;");
         
