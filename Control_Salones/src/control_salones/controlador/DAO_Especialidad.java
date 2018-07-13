@@ -1,6 +1,6 @@
 package control_salones.controlador;
 
-import control_salones.datos.conexion;
+import control_salones.datos.ConectorJoshua;
 import control_salones.modelo.Especialidad;
 
 import java.sql.ResultSet;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class DAO_Especialidad {
 
     public ArrayList<Especialidad> obtenerDatos() {
-        conexion db = new conexion();
+        ConectorJoshua db = new ConectorJoshua();
         db.conectar();
         ArrayList<Especialidad> listado = new ArrayList<>();
         ResultSet resultado = db.consulta("select * from tbl_especialidad");
@@ -29,7 +29,7 @@ public class DAO_Especialidad {
     }
 
     public void insertarDatos(Especialidad especialidad) {
-        conexion c = new conexion();
+        ConectorJoshua c = new ConectorJoshua();
         c.conectar();
         c.insertar("INSERT INTO tbl_especialidad (codigo, nombre_especialidad) VALUES (" + especialidad.getCodigo() + ","
                 + "'" + especialidad.getNombre_especialidad() + "');");
@@ -38,7 +38,7 @@ public class DAO_Especialidad {
     }
 
     public void borrarDatos(Especialidad delEspecialidad) {
-        conexion c = new conexion();
+        ConectorJoshua c = new ConectorJoshua();
         c.conectar();
         String sql = "DELETE FROM tbl_Especialidad WHERE codigo =" + delEspecialidad.getCodigo() + ";";
         c.delDatos(sql);
@@ -46,7 +46,7 @@ public class DAO_Especialidad {
     }
 
     public void updateDatos(Especialidad datosE) {
-        conexion c = new conexion();
+        ConectorJoshua c = new ConectorJoshua();
         c.conectar();
         c.insertar("UPDATE tbl_Especialidad SET nombre_especialidad =" + "'"
                 + datosE.getNombre_especialidad() + "'" + " WHERE codigo =" + datosE.getCodigo() + ";");
@@ -54,7 +54,7 @@ public class DAO_Especialidad {
     }
 
     public ArrayList<Especialidad> buscarDatos(String codigo) {
-        conexion db = new conexion();
+        ConectorJoshua db = new ConectorJoshua();
         db.conectar();
         ArrayList<Especialidad> listado = new ArrayList<>();
         ResultSet resultado = db.consulta("SELECT * FROM tbl_Especialidad WHERE codigo LIKE '%" + codigo + "%'");

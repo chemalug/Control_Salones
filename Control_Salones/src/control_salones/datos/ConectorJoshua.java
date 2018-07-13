@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class conexion {
+public class ConectorJoshua {
 private static final String CLASE = "com.mysql.cj.jdbc.Driver";
 
     private final String host = "35.232.63.100";
@@ -23,7 +23,7 @@ private static final String CLASE = "com.mysql.cj.jdbc.Driver";
     private String mensajeError;
 
 
-    public conexion() {
+    public ConectorJoshua() {
         this.mensajeError = "";
         this.url = "jdbc:mysql://" + this.host + "/" + this.nombre;
     }

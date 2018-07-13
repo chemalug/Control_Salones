@@ -7,7 +7,7 @@ package control_salones.vista;
 
 import control_salones.controlador.DAO_Especialidad;
 import control_salones.controlador.DAO_catalogoEventos;
-import control_salones.datos.conexion;
+import control_salones.datos.ConectorJoshua;
 import control_salones.modelo.CatalogoEvento;
 import control_salones.modelo.Especialidad;
 import java.sql.ResultSet;
@@ -332,7 +332,7 @@ public class frmModificarEvento extends javax.swing.JFrame {
     public void cargarTipoEvento() {
         DefaultComboBoxModel modeloTipoEvento = new DefaultComboBoxModel();
 
-        conexion db = new conexion();
+        ConectorJoshua db = new ConectorJoshua();
         db.conectar();
         ResultSet resultadoTipoEvento = db.consulta("Select nombre_tipo_evento from tbl_tipo_evento;");
         try {
