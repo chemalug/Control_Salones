@@ -20,6 +20,8 @@ public class frm_Cliente extends javax.swing.JFrame {
     public frm_Cliente() {
         initComponents();
     }
+    
+    private boolean wasSaved = false;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -129,6 +131,8 @@ public class frm_Cliente extends javax.swing.JFrame {
         //Envía los datos del cliente al método que agrega los clientes a la base de datos
         ClienteControlador clienteControlador = new ClienteControlador();
         clienteControlador.agregarCliente(cliente);
+        wasSaved = true;
+        this.dispose();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
@@ -165,6 +169,13 @@ public class frm_Cliente extends javax.swing.JFrame {
                 new frm_Cliente().setVisible(true);
             }
         });
+    }
+    
+    public Cliente getCliente(){
+        if(wasSaved)
+            return new Cliente(Integer.valueOf(this.txtCodigo.getText()), this.txtNombre.getText(), this.txtCodigo.getText());
+        else
+            return null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
