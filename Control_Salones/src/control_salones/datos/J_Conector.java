@@ -17,6 +17,7 @@ import java.sql.Statement;
  */
 public class J_Conector {
     
+    //Este es el link del driver cambiado
     private static final String CLASE = "com.mysql.jdbc.Driver";
 
     private final String host = "35.232.63.100";
