@@ -8,7 +8,7 @@ package control_salones.vista;
 import javax.swing.table.DefaultTableModel;
 import control_salones.controlador.UsuarioControlador;
 import control_salones.modelo.Usuario;
-import control_salones.datos.Conector;
+import control_salones.datos.J_Conector;
 
 /**
  *
@@ -205,7 +205,7 @@ public class FrmControlUsuario extends javax.swing.JFrame {
 
     private void tblCUUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCUUsuariosMouseClicked
         // TODO add your handling code here:
-        Conector con = new Conector();
+        J_Conector con = new J_Conector();
         con.conectar();
         int fila = tblCUUsuarios.getSelectedRow();
         String nombre = tblCUUsuarios.getValueAt(fila, 0).toString();
