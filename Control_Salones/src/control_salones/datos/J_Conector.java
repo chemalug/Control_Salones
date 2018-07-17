@@ -17,7 +17,7 @@ import java.sql.Statement;
  */
 public class J_Conector {
     
-    private static final String CLASE = "com.mysql.cj.jdbc.Driver";
+    private static final String CLASE = "com.mysql.jdbc.Driver";
 
     private final String host = "35.232.63.100";
     private final String usuario = "efi";
