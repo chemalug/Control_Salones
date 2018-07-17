@@ -5,7 +5,7 @@
  */
 package control_salones.controlador;
 
-import control_salones.datos.ConectorJoshua;
+import control_salones.datos.ConectorJosh;
 
 import control_salones.modelo.Instructor;
 
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class DAO_Instructor {
 
     public ArrayList<Instructor> obtenerDatos() {
-        ConectorJoshua db = new ConectorJoshua();
+        ConectorJosh db = new ConectorJosh();
         db.conectar();
         ArrayList<Instructor> listado = new ArrayList<>();
         ResultSet resultado = db.consulta("select * from tbl_Instructor");
@@ -43,7 +43,7 @@ public class DAO_Instructor {
     }
 
     public void insertarDatos(Instructor datosI) {
-        ConectorJoshua c = new ConectorJoshua();
+        ConectorJosh c = new ConectorJosh();
         c.conectar();
         c.insertar("INSERT INTO tbl_instructor (codigo, nombre_instructor, reglon_presupuestario,estado, nit_instructor, correo_instructor)"
                 + "VALUES (" + datosI.getCodigo() + ",'" + datosI.getNombre_instructor() + "'," + "'" + datosI.getRenglon_presupuestario() + "'"
@@ -54,7 +54,7 @@ public class DAO_Instructor {
     }
 
     public void updateDatos(Instructor datosI) {
-        ConectorJoshua c = new ConectorJoshua();
+        ConectorJosh c = new ConectorJosh();
         c.conectar();
         c.insertar("UPDATE tbl_instructor SET nombre_instructor =" + "'" + datosI.getNombre_instructor() + "'" + ", reglon_presupuestario=" + "'" + datosI.getRenglon_presupuestario() + "'"
                 + ", estado=" + datosI.getEstado() + ", nit_instructor= " + "'" + datosI.getNit_instructor() + "'" + ", correo_instructor=" + "'" + datosI.getCorreo_instructor() + "'"
@@ -63,7 +63,7 @@ public class DAO_Instructor {
     }
 
     public void borrarDatos(Instructor delInstructor) {
-        ConectorJoshua c = new ConectorJoshua();
+        ConectorJosh c = new ConectorJosh();
         c.conectar();
         String sql = "DELETE FROM tbl_instructor WHERE codigo =" + delInstructor.getCodigo() + ";";
         c.delDatos(sql);
@@ -71,7 +71,7 @@ public class DAO_Instructor {
     }
 
     public ArrayList<Instructor> buscarDatos(String codigo) {
-        ConectorJoshua db = new ConectorJoshua();
+        ConectorJosh db = new ConectorJosh();
         db.conectar();
         ArrayList<Instructor> listado = new ArrayList<>();
         ResultSet resultado = db.consulta("SELECT * FROM tbl_Instructor WHERE codigo LIKE '%" + codigo + "%'");

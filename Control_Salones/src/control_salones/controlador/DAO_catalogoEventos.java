@@ -1,6 +1,6 @@
 package control_salones.controlador;
 
-import control_salones.datos.ConectorJoshua;
+import control_salones.datos.ConectorJosh;
 import control_salones.modelo.CatalogoEvento;
 import control_salones.modelo.Instructor;
 import java.sql.ResultSet;
@@ -12,7 +12,7 @@ import javax.swing.DefaultComboBoxModel;
 public class DAO_catalogoEventos {
 
     public ArrayList<CatalogoEvento> obtenerDatos() {
-        ConectorJoshua db = new ConectorJoshua();
+        ConectorJosh db = new ConectorJosh();
         db.conectar();
         ArrayList<CatalogoEvento> listado = new ArrayList<>();
         ResultSet resultado = db.consulta("select * from tbl_catalogo_evento");
@@ -36,7 +36,7 @@ public class DAO_catalogoEventos {
     }
 
     public void insertarDatos(CatalogoEvento datosE) {
-        ConectorJoshua c = new ConectorJoshua();
+        ConectorJosh c = new ConectorJosh();
         c.conectar();
         String sql = ("INSERT INTO tbl_catalogo_evento (codigo, codigo_especialidad,nombre_evento, tipo_evento, nivel_competencia, duracion_modulo, estado_modulo) "
                 + "VALUES(" + datosE.getCodigo() + "," + datosE.getCodigo_especialidad() + ",'" + datosE.getNombre_evento() + "'," + datosE.getTipo_evento() + "," + datosE.getNivel_competencia() + ","
