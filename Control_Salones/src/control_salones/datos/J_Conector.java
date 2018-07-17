@@ -67,8 +67,8 @@ public class J_Conector {
         ResultSet resultado = null;
         this.conectar();
         try {
-            st = link.createStatement();
-            resultado = st.executeQuery(sql);
+            this.st = this.link.createStatement();
+            resultado = this.st.executeQuery(sql);
 
         } catch (SQLException e) {
             System.err.println(e);
