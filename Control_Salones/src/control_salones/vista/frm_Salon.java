@@ -367,9 +367,14 @@ public class frm_Salon extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        String dato = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),0));
-        Salon salon = new Salon();
-        salon.setCodigo(Integer.parseInt(dato));
+        String dato1 = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),0));
+        String dato2 = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),1));
+        String dato3 = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),2));
+        frm_ModificarSalon modificar = new frm_ModificarSalon();
+        modificar.setTxtCodigo(dato1);
+        modificar.setTxtNombre(dato2);
+        modificar.setTxtCapacidad(dato3);
+        modificar.setVisible(true);
     }//GEN-LAST:event_btnModificarActionPerformed
 
     /**
