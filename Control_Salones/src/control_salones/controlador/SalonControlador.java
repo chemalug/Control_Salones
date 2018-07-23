@@ -1,27 +1,24 @@
 package control_salones.controlador;
 
-import control_salones.datos.Conector;
+import control_salones.datos.ConectorMario;
 import control_salones.modelo.Salon;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class SalonControlador {
 
     private PreparedStatement ps;
     private Connection conn;
-    Conector con = new Conector();
+    ConectorMario con = new ConectorMario();
 
     public class noEditable extends DefaultTableModel {
 
         @Override
         public boolean isCellEditable(int fila, int columna) {
-            if (columna == 6) {
+            if (columna == 8) {
                 return true;
             }
             return false;
@@ -31,10 +28,13 @@ public class SalonControlador {
     public noEditable mostrarSalon(String sql) {
         noEditable modelo = new noEditable();
         ResultSet st = con.consultarDatos(sql);
-        modelo.setColumnIdentifiers(new Object[]{"Codigo Salon", "Numero Salon", "Nombre", "Capacidad", "Estado"});
+        modelo.setColumnIdentifiers(new Object[]{"Codigo Salon", "Nombre Salon", "Capacidad", "PC Instructor", "Proyector", "Pizarron", 
+            "PC Participantes", "Observaciones"});
         try {
             while (st.next()) {
-                modelo.addRow(new Object[]{st.getString("codigo"), st.getString("no_salon"), st.getString("nombre_salon"), st.getString("capacidad_salon"), st.getString("estado_salon")});
+                modelo.addRow(new Object[]{st.getString("codigo"), st.getString("nombre_salon"), st.getString("capacidad_salon"), 
+                    st.getString("pc_instructor"), st.getString("proyector"), st.getString("pizarron"), st.getString("pc_participantes"), 
+                    st.getString("otros_equipos")});
             }
 
         } catch (SQLException e) {
@@ -47,15 +47,18 @@ public class SalonControlador {
     public boolean insertarSalon(Salon salon) {
 
         int resultado;
-        String sql = "INSERT INTO tbl_salon(codigo, no_salon, nombre_salon, capacidad_salon, estado_salon) VALUES (?,?,?,?,?);";
+        String sql = "INSERT INTO tbl_salon(nombre_salon, capacidad_salon, pc_instructor, proyector, pizarron, pc_participantes, "
+                + " otros_equipos) VALUES (?,?,?,?,?,?,?);";
 
         try {
             ps = con.preparar(sql);
-            ps.setInt(1, salon.getCodigo());
-            ps.setInt(2, salon.getNo_salon());
-            ps.setString(3, salon.getNombre_salon());
-            ps.setInt(4, salon.getCapacidad());
-            ps.setInt(5, salon.getEstado_salon());
+            ps.setString(1, salon.getNombre_salon());
+            ps.setInt(2, salon.getCapacidad_salon());
+            ps.setInt(3, salon.getPc_instructor());
+            ps.setInt(4, salon.getProyector());
+            ps.setInt(5, salon.getPizarron());
+            ps.setString(6, salon.getPc_participantes());
+            ps.setString(7, salon.getObservaciones());
             resultado = this.ps.executeUpdate();
 
         } catch (SQLException e) {

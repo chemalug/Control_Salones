@@ -1,13 +1,23 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package control_salones.modelo;
 
-public class EstadoSalon {
+/**
+ *
+ * @author efiapp
+ */
+public class EstadoEvento {
+
     private int codigo;
     private String descripcion;
 
-    public EstadoSalon() {
+    public EstadoEvento() {
     }
 
-    public EstadoSalon(int codigo, String descripcion) {
+    public EstadoEvento(int codigo, String descripcion) {
         this.codigo = codigo;
         this.descripcion = descripcion;
     }
@@ -30,8 +40,7 @@ public class EstadoSalon {
 
     @Override
     public String toString() {
-        return  codigo + " - " + descripcion ;
+        return descripcion;
     }
-    
     
 }

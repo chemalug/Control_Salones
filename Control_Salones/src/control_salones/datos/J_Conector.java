@@ -1,15 +1,23 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package control_salones.datos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Conector {
-
-    private static final String CLASE = "com.mysql.jdbc.Driver";
+/**
+ *
+ * @author u-jona
+ */
+public class J_Conector {
+    
+    private static final String CLASE = "com.mysql.cj.jdbc.Driver";
 
     private final String host = "35.232.63.100";
     private final String usuario = "efi";
@@ -18,53 +26,56 @@ public class Conector {
     private final String url;
 
     private Connection link;
-    private Statement statement;
-    public ResultSet resultado;
-    private PreparedStatement ps;
-    public String mensajeError;
+    private Statement st;
 
-    public Conector() {
+    private String mensajeError;
+
+
+    public J_Conector() {
         this.mensajeError = "";
         this.url = "jdbc:mysql://" + this.host + "/" + this.nombre;
     }
 
-    public void conectar() {
+    public boolean conectar() {
         try {
             Class.forName(CLASE).newInstance();
             this.link = DriverManager.getConnection(this.url, this.usuario, this.clave);
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
             this.mensajeError = e.getMessage();
+            return false;
         }
+        return true;
     }
+    public boolean consultaG(String consulta) {
 
-    public PreparedStatement preparar(String sql) {
+        int resultado;
+
+        try {
+
+            this.st = this.link.createStatement();
+            resultado = this.st.executeUpdate(consulta);
+
+        } catch (SQLException e) {
+            this.mensajeError = e.getMessage();
+            return false;
+        }
+        return (resultado > 0);
+    }
+    
+    
+    public ResultSet consultar(String sql){
+        ResultSet resultado = null;
         this.conectar();
         try {
-            ps = link.prepareStatement(sql);
-        } catch (SQLException ex) {
-            System.out.println(ex);
+            this.st = this.link.createStatement();
+            resultado = this.st.executeQuery(sql);
+
+        } catch (SQLException e) {
+            System.err.println(e);
         }
-        return ps;
+        
+        return resultado ; 
     }
-
-    public ResultSet consultaRegistro(String sql) {
-        try {
-            this.statement = this.link.createStatement();
-            resultado = this.statement.executeQuery(sql);
-        } catch (SQLException ex) {
-            this.mensajeError = ex.getMessage();
-        }
-        return resultado;
-    }
-
-    public ResultSet consultarDatos(String sql) {
-        ResultSet result = null;
-        Conector c = new Conector();
-        c.conectar();
-        result = c.consultaRegistro(sql);
-        return result;
-    }
-
     public boolean desconectar() {
         try {
             this.link.close();
@@ -78,5 +89,6 @@ public class Conector {
     public String getMensajeError() {
         return mensajeError;
     }
-
+    
+    
 }
