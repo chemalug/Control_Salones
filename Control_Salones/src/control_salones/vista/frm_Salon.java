@@ -2,6 +2,7 @@ package control_salones.vista;
 
 import control_salones.controlador.SalonControlador;
 import control_salones.modelo.Salon;
+import javax.swing.JOptionPane;
 
 public class frm_Salon extends javax.swing.JFrame {
 
@@ -326,7 +327,6 @@ public class frm_Salon extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         Salon salon = new Salon();
-        SalonControlador sc = new SalonControlador();
         
         salon.setNombre_salon(txtNombre.getText());
         salon.setCapacidad_salon(Integer.parseInt(txtCapacidad.getText()));
@@ -354,12 +354,14 @@ public class frm_Salon extends javax.swing.JFrame {
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         Salon salon = new Salon();
-        SalonControlador sc = new SalonControlador();
         String dato = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),0));
         salon.setCodigo(Integer.parseInt(dato));
-        sc.borrarSalon(salon);
+        if(JOptionPane.showConfirmDialog(rootPane, "¿Esta seguro de borrar el salon? Esta accion no se puede revertir...") == JOptionPane.YES_OPTION){
+            sc.borrarSalon(salon);
+            this.tblSalones.setModel(sc.mostrarSalon("SELECT * FROM tbl_salon"));
+        }
                 
-        this.tblSalones.setModel(sc.mostrarSalon("SELECT * FROM tbl_salon"));
+        
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -367,14 +369,36 @@ public class frm_Salon extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        String dato1 = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),0));
-        String dato2 = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),1));
-        String dato3 = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),2));
+        String codigo = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),0));
+        String nombre_salon = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),1));
+        String capacidad_salon = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),2));
+        String pc_instructor = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),3));
+        String proyector = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),4));
+        String pizarron = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),5));
+        String pc_participantes = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),6));
+        String otros_equipos = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),7));
         frm_ModificarSalon modificar = new frm_ModificarSalon();
-        modificar.setTxtCodigo(dato1);
-        modificar.setTxtNombre(dato2);
-        modificar.setTxtCapacidad(dato3);
+        modificar.setTxtCodigo(codigo);
+        modificar.setTxtNombre(nombre_salon);
+        modificar.setTxtCapacidad(capacidad_salon);
+        if ("1".equals(pc_instructor)){
+            modificar.setrdbPcIns1();
+        } else if ("0".equals(pc_instructor))
+            modificar.setrdbPcIns0();
+        if ("1".equals(proyector)){
+            modificar.setrdbProyector1();
+        } else if ("0".equals(proyector))
+            modificar.setrdbProyector0();
         modificar.setVisible(true);
+        if ("1".equals(pizarron)){
+            modificar.setrdbPizarron1();
+        } else if ("0".equals(pizarron))
+            modificar.setrdbPizarron0();
+        modificar.setVisible(true);
+        modificar.setspnPcParticipantes(Integer.parseInt(pc_participantes));
+        modificar.setTxtObservaciones(otros_equipos);
+        
+        
     }//GEN-LAST:event_btnModificarActionPerformed
 
     /**

@@ -1,11 +1,17 @@
 package control_salones.vista;
 
+import control_salones.controlador.SalonControlador;
+import control_salones.modelo.Salon;
+import javax.swing.SpinnerNumberModel;
+
 public class frm_ModificarSalon extends javax.swing.JFrame {
 
     public frm_ModificarSalon() {
         initComponents();
     }
 
+    SalonControlador sc = new SalonControlador();
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -37,9 +43,9 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
         txtObservaciones = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        btnLimpiar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        txtLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -102,109 +108,55 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Equipamiento de Salones"));
         jPanel2.setToolTipText("");
         jPanel2.setName(""); // NOI18N
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setText("PC Instructor:");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 27, -1, -1));
 
         jLabel8.setText("Proyector:");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 27, -1, -1));
 
         btgInstructor.add(rdbPcIns1);
         rdbPcIns1.setText("Si");
+        jPanel2.add(rdbPcIns1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 45, -1, -1));
 
         btgInstructor.add(rdbPcIns0);
         rdbPcIns0.setText("No");
+        jPanel2.add(rdbPcIns0, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 45, -1, -1));
 
         btgProyector.add(rdbProyector1);
         rdbProyector1.setText("Si");
+        jPanel2.add(rdbProyector1, new org.netbeans.lib.awtextra.AbsoluteConstraints(126, 45, -1, -1));
 
         btgProyector.add(rdbProyector0);
         rdbProyector0.setText("No");
+        jPanel2.add(rdbProyector0, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 45, -1, -1));
 
         jLabel9.setText("Pizarron:");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 70, -1, -1));
 
         btgPizarron.add(rdbPizarron1);
         rdbPizarron1.setText("Si");
+        jPanel2.add(rdbPizarron1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 90, -1, -1));
 
         btgPizarron.add(rdbPizarron0);
         rdbPizarron0.setText("No");
+        jPanel2.add(rdbPizarron0, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 90, -1, -1));
 
         jLabel10.setText("PC Participantes:");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(126, 70, -1, -1));
+        jPanel2.add(spnPcParticipantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(126, 95, 57, -1));
 
         jLabel11.setText("Observaciones:");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 126, -1, -1));
 
         txtObservaciones.setColumns(20);
         txtObservaciones.setRows(5);
         jScrollPane2.setViewportView(txtObservaciones);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(43, 43, 43)
-                                .addComponent(jLabel8))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(rdbPcIns1)
-                                .addGap(7, 7, 7)
-                                .addComponent(rdbPcIns0)
-                                .addGap(31, 31, 31)
-                                .addComponent(rdbProyector1)
-                                .addGap(7, 7, 7)
-                                .addComponent(rdbProyector0))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(67, 67, 67)
-                                .addComponent(jLabel10))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(rdbPizarron1)
-                                .addGap(7, 7, 7)
-                                .addComponent(rdbPizarron0)
-                                .addGap(31, 31, 31)
-                                .addComponent(spnPcParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel11))
-                        .addGap(0, 116, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addGap(4, 4, 4)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rdbPcIns1)
-                            .addComponent(rdbPcIns0)
-                            .addComponent(rdbProyector1)
-                            .addComponent(rdbProyector0))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10))
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rdbPizarron1)
-                            .addComponent(rdbPizarron0))
-                        .addGap(13, 13, 13))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(spnPcParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 146, 308, 126));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 340, 290));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 340, 290));
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -212,13 +164,6 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 350, 50));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Botones"));
-
-        btnLimpiar.setText("Limpiar");
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
-            }
-        });
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -234,6 +179,13 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
             }
         });
 
+        txtLimpiar.setText("Limpiar");
+        txtLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -241,9 +193,9 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(btnGuardar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(btnLimpiar)
-                .addGap(39, 39, 39)
+                .addGap(38, 38, 38)
+                .addComponent(txtLimpiar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(btnCancelar)
                 .addContainerGap())
         );
@@ -252,9 +204,9 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLimpiar)
                     .addComponent(btnGuardar)
-                    .addComponent(btnCancelar))
+                    .addComponent(btnCancelar)
+                    .addComponent(txtLimpiar))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -264,19 +216,41 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        Salon salon = new Salon();
+        salon.setCodigo(Integer.parseInt(txtCodigo.getText()));
+        salon.setNombre_salon(txtNombre.getText());
+        salon.setCapacidad_salon(Integer.parseInt(txtCapacidad.getText()));
+        if (rdbPcIns1.isSelected()==true){
+            salon.setPc_instructor(1);
+        } else if (rdbPcIns0.isSelected()==true){
+            salon.setPc_instructor(0);
+        }
+        if (rdbPizarron1.isSelected()==true){
+            salon.setPizarron(1);
+        } else if (rdbPizarron0.isSelected()==true){
+            salon.setPizarron(0);
+        }
+        if (rdbProyector1.isSelected()==true){
+            salon.setProyector(1);
+        } else if (rdbProyector0.isSelected()==true){
+            salon.setProyector(0);
+        }
+        salon.setPc_participantes(spnPcParticipantes.getValue().toString());
+        salon.setObservaciones(txtObservaciones.getText());
+        sc.modificarSalon(salon);
         
     }//GEN-LAST:event_btnGuardarActionPerformed
-
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
 
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-    }//GEN-LAST:event_btnLimpiarActionPerformed
+    private void txtLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLimpiarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -319,7 +293,6 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btgProyector;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -342,6 +315,7 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
     private javax.swing.JSpinner spnPcParticipantes;
     private javax.swing.JTextField txtCapacidad;
     private javax.swing.JTextField txtCodigo;
+    private javax.swing.JButton txtLimpiar;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextArea txtObservaciones;
     // End of variables declaration//GEN-END:variables
@@ -353,7 +327,7 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
     public void setTxtCodigo(String dato) {
         this.txtCodigo.setText(dato);
     }
-    
+
     public javax.swing.JTextField getTxtNombre() {
         return txtNombre;
     }
@@ -361,12 +335,78 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
     public void setTxtNombre(String dato) {
         this.txtNombre.setText(dato);
     }
-    
+
     public javax.swing.JTextField getTxtCapacidad() {
         return txtCapacidad;
     }
 
     public void setTxtCapacidad(String dato) {
         this.txtCapacidad.setText(dato);
+    }
+
+    public javax.swing.JRadioButton getRdbPcIns1() {
+        return rdbPcIns1;
+    }
+
+    public void setrdbPcIns1() {
+        this.rdbPcIns1.setSelected(true);
+    }
+    
+    public javax.swing.JRadioButton getRdbPcIns0() {
+        return rdbPcIns0;
+    }
+
+    public void setrdbPcIns0() {
+        this.rdbPcIns0.setSelected(true);
+    }
+    
+    public javax.swing.JRadioButton getPizarron0() {
+        return rdbPizarron0;
+    }
+
+    public void setrdbPizarron0() {
+        this.rdbPizarron0.setSelected(true);
+    }
+    
+    public javax.swing.JRadioButton getPizarron1() {
+        return rdbPizarron1;
+    }
+
+    public void setrdbPizarron1() {
+        this.rdbPizarron1.setSelected(true);
+    }
+    
+    public javax.swing.JRadioButton getProyector0() {
+        return rdbProyector0;
+    }
+
+    public void setrdbProyector0() {
+        this.rdbProyector0.setSelected(true);
+    }
+    
+    public javax.swing.JRadioButton getProyector1() {
+        return rdbProyector1;
+    }
+
+    public void setrdbProyector1() {
+        this.rdbProyector1.setSelected(true);
+    }
+    
+    public javax.swing.JSpinner getPcParticipantes() {
+        return spnPcParticipantes;
+    }
+
+    public void setspnPcParticipantes(int dato) {
+        SpinnerNumberModel snm = new SpinnerNumberModel();
+        spnPcParticipantes.setValue(dato);
+        
+    }
+    
+    public javax.swing.JTextArea getTxtObservaciones() {
+        return txtObservaciones;
+    }
+
+    public void setTxtObservaciones(String dato) {
+        this.txtObservaciones.setText(dato);
     }
 }

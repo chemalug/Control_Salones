@@ -48,7 +48,7 @@ public class SalonControlador {
 
         int resultado;
         String sql = "INSERT INTO tbl_salon(nombre_salon, capacidad_salon, pc_instructor, proyector, pizarron, pc_participantes, "
-                + " otros_equipos) VALUES (?,?,?,?,?,?,?);";
+                + "otros_equipos) VALUES (?,?,?,?,?,?,?);";
 
         try {
             ps = con.preparar(sql);
@@ -59,6 +59,31 @@ public class SalonControlador {
             ps.setInt(5, salon.getPizarron());
             ps.setString(6, salon.getPc_participantes());
             ps.setString(7, salon.getObservaciones());
+            resultado = this.ps.executeUpdate();
+
+        } catch (SQLException e) {
+            con.mensajeError = e.getMessage();
+            return false;
+        }
+        return (resultado > 0);
+    }
+    
+    public boolean modificarSalon(Salon salon) {
+
+        int resultado;
+        String sql = "UPDATE tbl_salon SET nombre_salon = ?, capacidad_salon = ?, pc_instructor = ?, proyector = ?, pizarron = ?, pc_participantes = ?, otros_equipos = ? "
+                + "WHERE codigo = ?;";
+
+        try {
+            ps = con.preparar(sql);
+            ps.setString(1, salon.getNombre_salon());
+            ps.setInt(2, salon.getCapacidad_salon());
+            ps.setInt(3, salon.getPc_instructor());
+            ps.setInt(4, salon.getProyector());
+            ps.setInt(5, salon.getPizarron());
+            ps.setString(6, salon.getPc_participantes());
+            ps.setString(7, salon.getObservaciones());
+            ps.setInt(8, salon.getCodigo());
             resultado = this.ps.executeUpdate();
 
         } catch (SQLException e) {
