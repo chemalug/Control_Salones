@@ -33,7 +33,7 @@ public class UsuarioControlador {
                 aux.setNombre(rs.getString(2));
                 aux.setUsuario(rs.getString(3));
                 aux.setPassword(rs.getString(4));
-                aux.setEstado_usuario(rs.getInt(5));
+                //aux.setEstado_usuario(rs.getInt(5));
                 listado.add(aux);
             }
         } catch (SQLException ex) {
@@ -47,15 +47,21 @@ public class UsuarioControlador {
     public void insertarUsuario(Usuario usr) {
         J_Conector con = new J_Conector();
         con.conectar();
-        con.consultaG("INSERT INTO tbl_usuario (nombre, usuario, password, estado_usuario) VALUES (" + 
-        "'" + usr.getNombre() + "','" + usr.getUsuario() + "','" + usr.getPassword() + 
-        "','" + String.valueOf(usr.getEstado_usuario()) + "');");
+        con.consultaG("INSERT INTO tbl_usuario (nombre, usuario, password) VALUES (" + 
+        "'" + usr.getNombre() + "','" + usr.getUsuario() + "','" + usr.getPassword() + "');");
         con.desconectar();
     }
-      public void eliminarUsuario(String codigo) {
+      public void eliminarUsuario(Usuario cod) {
         J_Conector con = new J_Conector();
         con.conectar();
-        con.consultaG("DELETE codigo FROM tbl_usuario WHERE"+"'"+codigo+"';");
+        con.consultaG("DELETE FROM tbl_usuario WHERE codigo='"+cod.getCodigo()+"';");
+        con.desconectar();
+    }
+      public void modifUsuario(Usuario usr) {
+        J_Conector con = new J_Conector();
+        con.conectar();
+        con.consultaG("UPDATE tbl_usuario SET  nombre=" + 
+        "'" + usr.getNombre() + "',usuario='" + usr.getUsuario() + "', password="+"'"+usr.getPassword()+"'  WHERE codigo="+"'"+usr.getCodigo()+"';");
         con.desconectar();
     }
 }

@@ -9,13 +9,15 @@ import javax.swing.table.DefaultTableModel;
 import control_salones.controlador.UsuarioControlador;
 import control_salones.modelo.Usuario;
 import control_salones.datos.J_Conector;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author u-jona
  */
 public class FrmControlUsuario extends javax.swing.JFrame {
-
+  ArrayList<String> claves = new ArrayList<String>();
     /**
      * Creates new form FrmControlUsuario
      */
@@ -35,9 +37,9 @@ public class FrmControlUsuario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnCUInsertar = new javax.swing.JButton();
-        btnCUModificar = new javax.swing.JButton();
         btnCUEliminar = new javax.swing.JButton();
-        btnCUGuardar = new javax.swing.JButton();
+        btnCUModificar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCUUsuarios = new javax.swing.JTable();
         btnCUAceptar = new javax.swing.JButton();
@@ -68,13 +70,6 @@ public class FrmControlUsuario extends javax.swing.JFrame {
             }
         });
 
-        btnCUModificar.setText("Modificar");
-        btnCUModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCUModificarActionPerformed(evt);
-            }
-        });
-
         btnCUEliminar.setText("Eliminar");
         btnCUEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,7 +77,19 @@ public class FrmControlUsuario extends javax.swing.JFrame {
             }
         });
 
-        btnCUGuardar.setText("Guardar");
+        btnCUModificar.setText("Modificar");
+        btnCUModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCUModificarActionPerformed(evt);
+            }
+        });
+
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -93,8 +100,8 @@ public class FrmControlUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnCUInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCUModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCUGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCUEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCUEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(21, 21, 21))
         );
         jPanel1Layout.setVerticalGroup(
@@ -102,13 +109,13 @@ public class FrmControlUsuario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnCUInsertar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCUModificar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCUGuardar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCUEliminar)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnActualizar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tblCUUsuarios.setModel(new javax.swing.table.DefaultTableModel(
@@ -127,8 +134,18 @@ public class FrmControlUsuario extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblCUUsuarios);
 
         btnCUAceptar.setText("Aceptar");
+        btnCUAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCUAceptarActionPerformed(evt);
+            }
+        });
 
         btnCUCancelar.setText("Cancelar");
+        btnCUCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCUCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,10 +176,10 @@ public class FrmControlUsuario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCUAceptar)
                             .addComponent(btnCUCancelar)))
@@ -182,7 +199,7 @@ public class FrmControlUsuario extends javax.swing.JFrame {
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:  
-        this.mostrar();
+        
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -196,34 +213,86 @@ public class FrmControlUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
         UsuarioControlador eli = new UsuarioControlador();
         Usuario u = new Usuario();
-        String codigo = tblCUUsuarios.getValueAt(tblCUUsuarios.getSelectedRow(), 0).toString();
+        try {
+        int fila = tblCUUsuarios.getSelectedRow();
+        String codigo = tblCUUsuarios.getValueAt(fila, 0).toString();
         u.setCodigo(Integer.parseInt(codigo));
-        eli.eliminarUsuario(codigo);
+        
+        if(JOptionPane.showConfirmDialog(null, "Seguro que desea Eliminar")== JOptionPane.YES_NO_OPTION){
+            eli.eliminarUsuario(u);
+        }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado usuario a eliminar, debe de seleccionar un usuario para continuar");
+        }
+        this.mostrar();
 
 
     }//GEN-LAST:event_btnCUEliminarActionPerformed
 
     private void tblCUUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCUUsuariosMouseClicked
         // TODO add your handling code here:
-        J_Conector con = new J_Conector();
-        con.conectar();
-        int fila = tblCUUsuarios.getSelectedRow();
-        String nombre = tblCUUsuarios.getValueAt(fila, 0).toString();
-        String usuario = tblCUUsuarios.getValueAt(fila, 2).toString();
-        int estado = (int) tblCUUsuarios.getValueAt(fila, 3);
-        FrmControlUsuarioModificar mo = new FrmControlUsuarioModificar();
-        mo.setNombre(nombre);
-        mo.setUsuario(usuario);
-        mo.setEstado(estado);
-        if (evt.getClickCount() == 2) {
-            mo.setVisible(true);
-        }
+//        J_Conector con = new J_Conector();
+//        con.conectar();
+//        int fila = tblCUUsuarios.getSelectedRow();
+//        String codigo = tblCUUsuarios.getValueAt(fila, 0).toString();
+//        String nombre = tblCUUsuarios.getValueAt(fila, 1).toString();
+//        String usuario = tblCUUsuarios.getValueAt(fila, 2).toString();
+//        //String password = tblCUUsuarios.getValueAt(fila, 3).toString();
+//        String password = claves.get(fila);
+//        //int estado = (int) tblCUUsuarios.getValueAt(fila, 3);
+//        FrmControlUsuarioModificar mo = new FrmControlUsuarioModificar();
+//        mo.setCodigo(codigo);
+//        mo.setNombre(nombre);
+//        mo.setUsuario(usuario);
+//        mo.setPass(password);
+//        //mo.setEstado(estado);
+//        if (evt.getClickCount() == 2) {
+//            mo.setVisible(true);
+//        }
 
     }//GEN-LAST:event_tblCUUsuariosMouseClicked
 
     private void btnCUModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCUModificarActionPerformed
         // TODO add your handling code here:
+         J_Conector con = new J_Conector();
+        con.conectar();
+        try {
+        int fila = tblCUUsuarios.getSelectedRow();
+        String codigo = tblCUUsuarios.getValueAt(fila, 0).toString();
+        String nombre = tblCUUsuarios.getValueAt(fila, 1).toString();
+        String usuario = tblCUUsuarios.getValueAt(fila, 2).toString();
+        //String password = tblCUUsuarios.getValueAt(fila, 3).toString();
+        String password = claves.get(fila);
+        //int estado = (int) tblCUUsuarios.getValueAt(fila, 3);
+        FrmControlUsuarioModificar mo = new FrmControlUsuarioModificar();
+        mo.setCodigo(codigo);
+        mo.setNombre(nombre);
+        mo.setUsuario(usuario);
+        mo.setPass(password);
+        mo.setVisible(true);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No ha seleccionado usuario a modificar, debe seleccionar un usuario antes de continuar");
+        }
+       
     }//GEN-LAST:event_btnCUModificarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // TODO add your handling code here:
+        this.mostrar();
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnCUCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCUCancelarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnCUCancelarActionPerformed
+
+    private void btnCUAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCUAceptarActionPerformed
+        // TODO add your handling code here:
+        this.mostrar();
+        dispose();
+    }//GEN-LAST:event_btnCUAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -264,10 +333,10 @@ public class FrmControlUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnCUAceptar;
     private javax.swing.JButton btnCUCancelar;
     private javax.swing.JButton btnCUEliminar;
-    private javax.swing.JButton btnCUGuardar;
     private javax.swing.JButton btnCUInsertar;
     private javax.swing.JButton btnCUModificar;
     private javax.swing.JLabel jLabel1;
@@ -281,18 +350,18 @@ public class FrmControlUsuario extends javax.swing.JFrame {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
-
         };
-
         modelo.setColumnCount(0);
         modelo.addColumn("Codigo");
         modelo.addColumn("Nombre");
         modelo.addColumn("Usuario");
-        modelo.addColumn("Estado de Usuario");
+        //modelo.addColumn("Pass");
+        //modelo.addColumn("Estado de Usuario");
         UsuarioControlador uc = new UsuarioControlador();
         for (Usuario cu : uc.consultarUsuario()) {
             //utilizar para llamar cada array a mostrar
-            modelo.addRow(new Object[]{cu.getCodigo(),cu.getNombre(), cu.getUsuario(), cu.getEstado_usuario()});
+            modelo.addRow(new Object[]{cu.getCodigo(),cu.getNombre(), cu.getUsuario(), claves.add(cu.getPassword())});
+            //claves.add(cu.getPassword());
         }
         tblCUUsuarios.setModel(modelo);
     }

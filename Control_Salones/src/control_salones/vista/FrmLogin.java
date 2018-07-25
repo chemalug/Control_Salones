@@ -58,6 +58,11 @@ public class FrmLogin extends javax.swing.JFrame {
         });
 
         btnLCancelar.setText("Cancelar");
+        btnLCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,6 +132,11 @@ public class FrmLogin extends javax.swing.JFrame {
             
             
     }//GEN-LAST:event_btnLAceptarActionPerformed
+
+    private void btnLCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLCancelarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnLCancelarActionPerformed
 
     /**
      * @param args the command line arguments

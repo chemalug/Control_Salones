@@ -9,10 +9,10 @@ import java.util.Date;
 
 /**
  *
- * @author efiapp
+ * @author u-jona
  */
 public class Fechas {
-    private int codigo;
+   private int codigo;
     private Date fecha;
     private int estado ;
     private String nombre_fecha;
@@ -63,5 +63,5 @@ public class Fechas {
     public String toString() {
         return "Fechas{" + "codigo=" + codigo + ", fecha=" + fecha + ", estado=" + estado + ", nombre_fecha=" + nombre_fecha + '}';
     }
-    
+ 
 }

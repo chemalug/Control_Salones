@@ -43,14 +43,10 @@ private void limpiarCajas(){
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         txtIUNombre = new javax.swing.JTextField();
         txtIUUsuario = new javax.swing.JTextField();
         btnIUCancelar = new javax.swing.JButton();
         btnIUAceptar = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        rdbIUActivo = new javax.swing.JRadioButton();
-        rdbIUInactivo = new javax.swing.JRadioButton();
         txtIUContraseña = new javax.swing.JPasswordField();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -74,9 +70,12 @@ private void limpiarCajas(){
 
         jLabel4.setText("Contraseña:");
 
-        jLabel5.setText("Estado:");
-
         btnIUCancelar.setText("Cancelar");
+        btnIUCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIUCancelarActionPerformed(evt);
+            }
+        });
 
         btnIUAceptar.setText("Aceptar");
         btnIUAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -85,36 +84,16 @@ private void limpiarCajas(){
             }
         });
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        rdbIUGrupo.add(rdbIUActivo);
-        rdbIUActivo.setText("Activo");
-
-        rdbIUGrupo.add(rdbIUInactivo);
-        rdbIUInactivo.setText("Inactivo");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(rdbIUActivo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(rdbIUInactivo)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(rdbIUActivo)
-                .addComponent(rdbIUInactivo))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnIUAceptar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnIUCancelar)
+                .addGap(52, 52, 52))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -125,51 +104,36 @@ private void limpiarCajas(){
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtIUNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                             .addComponent(txtIUUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtIUContraseña))))
                 .addContainerGap(42, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnIUAceptar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnIUCancelar)
-                .addGap(53, 53, 53))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(29, 29, 29)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtIUNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                    .addComponent(txtIUNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtIUUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtIUContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel5))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIUAceptar)
                     .addComponent(btnIUCancelar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(17, 17, 17))
         );
 
         pack();
@@ -178,20 +142,26 @@ private void limpiarCajas(){
     private void btnIUAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIUAceptarActionPerformed
         // TODO add your handling code here:
         Usuario u = new Usuario();
+        //u.setCodigo(Integer.parseInt(txtCodigo.getText()));
         UsuarioControlador uc = new UsuarioControlador();
-        
         u.setNombre(txtIUNombre.getText());
         u.setUsuario(txtIUUsuario.getText());
-  
         String pass = new String(txtIUContraseña.getPassword());
         u.setPassword(pass);
-       
-        u.setEstado_usuario(rdbIUActivo.isSelected()?1:2);
-        uc.insertarUsuario(u);
+//       u.setEstado_usuario(rdbIUActivo.isSelected()?1:2);
+     uc.insertarUsuario(u);
+//     FrmControlUsuario fcu = new FrmControlUsuario();
+//     fcu.mostrar();
+     dispose();
        
         //limpiarCajas();
         
     }//GEN-LAST:event_btnIUAceptarActionPerformed
+
+    private void btnIUCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIUCancelarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnIUCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,14 +208,11 @@ private void limpiarCajas(){
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton rdbIUActivo;
     private javax.swing.ButtonGroup rdbIUGrupo;
-    private javax.swing.JRadioButton rdbIUInactivo;
     private javax.swing.JPasswordField txtIUContraseña;
     private javax.swing.JTextField txtIUNombre;
     private javax.swing.JTextField txtIUUsuario;
     // End of variables declaration//GEN-END:variables
+
 }

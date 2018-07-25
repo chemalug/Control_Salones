@@ -12,7 +12,7 @@ import java.util.Date;
  * @author u-jona
  */
 public class Fecha {
-    private int codigo;
+   private int codigo;
     private Date fecha;
     private int estado;
     private String nombre_fecha;

@@ -20,7 +20,7 @@ public class Database {
     private static String host = "35.232.63.100.xip.io";
     private static String usuario = "root";
     private static String clave = "Hola1234";
-    private static String nombre = "db_control_salones";
+    private static String nombre = "db_salones";
     //private static String host = "localhost";
     //private static String clave = "";
     //private static String nombre = "persistencia";

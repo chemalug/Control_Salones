@@ -5,9 +5,18 @@
  */
 package control_salones.vista;
 
+
 import javax.swing.table.DefaultTableModel;
 import control_salones.controlador.FechasControlador;
+import control_salones.datos.Database;
+import control_salones.datos.J_Conector;
+
 import control_salones.modelo.Fecha;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author u-jona
@@ -31,20 +40,24 @@ public class FrmFechas extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        btnActualizar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        btnLlenado = new javax.swing.JButton();
+        spnAnio = new com.toedter.calendar.JYearChooser();
+        btnLlenadoFeriado = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        txtFBuscarFecha = new javax.swing.JFormattedTextField();
-        btnFBuscar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblFFechas = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
-        btnFAgregar = new javax.swing.JButton();
-        btnAModificar = new javax.swing.JButton();
-        btnAAceptar = new javax.swing.JButton();
-        btnACancelar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        btnModificarFecha = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -53,96 +66,92 @@ public class FrmFechas extends javax.swing.JFrame {
 
         jLabel1.setText("Fechas");
 
-        jLabel2.setText("Buscar fecha:");
-
-        btnFBuscar.setText("Buscar");
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jScrollPane1.setViewportView(tblFFechas);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        btnFAgregar.setText("Agregar");
-        btnFAgregar.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFAgregarActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
             }
         });
 
-        btnAModificar.setText("Modificar");
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        btnAAceptar.setText("Aceptar");
+        btnLlenado.setText("Complado de Calendario");
+        btnLlenado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLlenadoActionPerformed(evt);
+            }
+        });
 
-        btnACancelar.setText("Cancelar");
+        btnLlenadoFeriado.setText("Completado de Días Feriados");
+
+        jLabel2.setText("Año");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAAceptar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnACancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnFAgregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnLlenado)
+                        .addGap(71, 71, 71)
+                        .addComponent(btnLlenadoFeriado))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(spnAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnFAgregar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAModificar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAAceptar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnACancelar)
-                .addContainerGap(22, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(36, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(spnAnio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLlenado)
+                    .addComponent(btnLlenadoFeriado))
+                .addGap(23, 23, 23))
         );
 
-        jLabel3.setText("Fechas Feriado");
+        tblFFechas.setColumnSelectionAllowed(false);
+        tblFFechas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblFFechasMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblFFechas);
+
+        btnModificarFecha.setText("Modificar Fecha");
+        btnModificarFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarFechaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(223, 223, 223)
+                        .addGap(235, 235, 235)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(1, 1, 1)
-                        .addComponent(txtFBuscarFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnFBuscar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))))
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnModificarFecha)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnActualizar))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane1)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -150,35 +159,85 @@ public class FrmFechas extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtFBuscarFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFBuscar))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(8, 8, 8)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnActualizar)
+                    .addComponent(btnModificarFecha))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnFAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFAgregarActionPerformed
-        // TODO add your handling code here:
-        FrmAgregarFecha faf = new FrmAgregarFecha();
-        faf.setVisible(true);
-    }//GEN-LAST:event_btnFAgregarActionPerformed
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         this.mostrar();
+
     }//GEN-LAST:event_formWindowOpened
+
+    private void tblFFechasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFFechasMouseClicked
+//        // TODO add your handling code here:
+//        J_Conector con = new J_Conector();
+//        con.conectar();
+//        int fila = tblFFechas.getSelectedRow();
+//        String codigo = tblFFechas.getValueAt(fila, 0).toString();
+//        String fecha = tblFFechas.getValueAt(fila, 1).toString();
+//        String estado = tblFFechas.getValueAt(fila, 2).toString();
+//        String descrip = tblFFechas.getValueAt(fila, 3).toString();
+//        FrmModificarFecha mf = new FrmModificarFecha();
+//        mf.setCodigo(codigo);
+//        mf.setFecha(fecha);
+//        mf.setEstado(estado);
+//        mf.setDescrip(descrip);
+//
+//        if (evt.getClickCount() == 2) {
+//            mf.setVisible(true);
+//        }
+    }//GEN-LAST:event_tblFFechasMouseClicked
+
+    private void btnLlenadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLlenadoActionPerformed
+        // TODO add your handling code here:
+        this.llenado2();
+    }//GEN-LAST:event_btnLlenadoActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // TODO add your handling code here:
+        this.mostrar();
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnModificarFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarFechaActionPerformed
+        // TODO add your handling code here:
+        J_Conector con = new J_Conector();
+        con.conectar();
+        try {
+        int fila = tblFFechas.getSelectedRow();
+        String codigo = tblFFechas.getValueAt(fila, 0).toString();
+        String fecha = tblFFechas.getValueAt(fila, 1).toString();
+        String estado = tblFFechas.getValueAt(fila, 2).toString();
+        String descrip = tblFFechas.getValueAt(fila, 3).toString();
+        FrmModificarFecha mf = new FrmModificarFecha();
+        mf.setCodigo(codigo);
+        mf.setFecha(fecha);
+        mf.setEstado(estado);
+        mf.setDescrip(descrip);
+        mf.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No ha seleccionado fecha a modificar, debe seleccionar una fecha antes de continuar");
+        }
+        
+//        if (fila) {
+//            
+//        }
+    }//GEN-LAST:event_btnModificarFechaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,30 +278,96 @@ public class FrmFechas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAAceptar;
-    private javax.swing.JButton btnACancelar;
-    private javax.swing.JButton btnAModificar;
-    private javax.swing.JButton btnFAgregar;
-    private javax.swing.JButton btnFBuscar;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnLlenado;
+    private javax.swing.JButton btnLlenadoFeriado;
+    private javax.swing.JButton btnModificarFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private com.toedter.calendar.JYearChooser spnAnio;
     private javax.swing.JTable tblFFechas;
-    private javax.swing.JFormattedTextField txtFBuscarFecha;
     // End of variables declaration//GEN-END:variables
-    protected void mostrar(){
-        DefaultTableModel modelo = new DefaultTableModel();
+    protected void mostrar() {
+
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         modelo.setColumnCount(0);
+        modelo.addColumn("Codigo");
         modelo.addColumn("Fecha");
         modelo.addColumn("Estado");
-        modelo.addColumn("Nombre de Fecha");
+        modelo.addColumn("Descripción");
         FechasControlador fc = new FechasControlador();
         for (Fecha f : fc.consultarFechas()) {
-        modelo.addRow(new Object[]{f.getFecha(), f.getEstado(), f.getNombre_fecha()});
+            String estadoTemp = "";
+            String fechaDMY = "";
+            if(f.getEstado()==0) estadoTemp = "";else  estadoTemp = "Feriado / Asueto";
+            
+            SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+            fechaDMY = formateador.format(f.getFecha());
+            
+            
+            
+            modelo.addRow(new Object[]{f.getCodigo(),fechaDMY,estadoTemp, f.getNombre_fecha()});
         }
+        this.tblFFechas.setModel(modelo);
+    }
+
+//    protected void buscar() {
+//        //DefaultTableModel modelo = (DefaultTableModel)tblFFechas.getModel();
+//
+//        DefaultTableModel modeloB = new DefaultTableModel();
+//        modeloB.setColumnCount(0);
+//        modeloB.addColumn("Fecha");
+//        modeloB.addColumn("Estado");
+//        modeloB.addColumn("Nombre de Fecha");
+//        FechasControlador fc = new FechasControlador();
+//        for (Fecha f : fc.buscarFechas(this.txtBFecha.getText())) {
+//            modeloB.addRow(new Object[]{f.getFecha(), f.getEstado(), f.getNombre_fecha()});
+//        }
+//        tblFFechas.setModel(modeloB);
+//
+//    }
+
+//    protected void llenado() {
+//       
+//        FechasControlador fc = new FechasControlador();
+//        Database db  = new Database();
+//        String sql = "Select * from tbl_fechas where fecha >= '"+ this.spnAnio.getValue() +"-1-1';" ;
+//        ResultSet rs =  db.consultar(sql);
+//        int resultado = 0;
+//        try {
+//        while(rs.next())    {
+//            resultado++;
+//        }
+//        } catch (Exception e) {
+//        }
+//   
+//        if(resultado > 0){
+//            JOptionPane.showMessageDialog(null, "La fechas ya existen, se encuentran " + resultado + " fechas ya ingresadas");
+//        }else{ fc.llenarFechas(this.spnAnio.getValue());
+//        
+//        }
+//    }
+    
+    protected void llenado2(){
+    FechasControlador fc = new FechasControlador();
+    int resultado = 0;
+    
+     if(fc.anio2(this.spnAnio.getValue())){
+     //if(JOptionPane.showConfirmDialog(null, "Esta seguro de llenar el año actual")==JOptionPane.YES_OPTION){
+     fc.llenarFechas(this.spnAnio.getValue());
+     //}
+     JOptionPane.showMessageDialog(null, "Año configurado con exito");
+     }else{JOptionPane.showMessageDialog(null, "El año que se desea configurar ya esta creado");
+        }
+    
     }
 
 }
+

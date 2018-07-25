@@ -23,7 +23,7 @@ public class J_Conector {
     private final String host = "35.232.63.100";
     private final String usuario = "efi";
     private final String clave = "Hola1234";
-    private final String nombre = "db_control_salones";
+    private final String nombre = "db_salones";
     private final String url;
 
     private Connection link;

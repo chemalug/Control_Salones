@@ -173,20 +173,5 @@ public class AsignacionEventoControllador {
         }
         return listado;
     }
-    public void llenarFechas(){
-                
-        for(int i = 1; i<=365; i++ ){
-            
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Calendar tr = new GregorianCalendar(2018, 0, 1);
-            tr.add(Calendar.DAY_OF_YEAR, i-1);
-            String currentTime = sdf.format(tr.getTime());
-            ArrayList<Object> args = new ArrayList<>();
-            args.add(i);            
-            args.add(currentTime);
-            args.add(0);
-            args.add("");
-            Database.procedimiento("sp_insertar_fechas", args);
-        }
-    }
+   
 }
