@@ -5,9 +5,11 @@
  */
 package control_salones.vista;
 
+import control_salones.controlador.LoginControlador;
 import control_salones.modelo.Login;
 import control_salones.datos.J_Conector;
-
+import control_salones.modelo.Usuario;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -123,14 +125,30 @@ public class FrmLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         J_Conector con = new J_Conector();
         con.conectar();
-        Login log = new Login();
-        //Convertir contraseña a String
+        Usuario log = new Usuario();
+        String usr = txtLUsuario.getText();
+        log.setUsuario(usr);
         String pass = new String(txtLContrasena.getPassword());
-        //Validar usuario vacio
-        log.setUsuario(txtLUsuario.getText());
         log.setPassword(pass);
-            
-            
+        LoginControlador lc = new LoginControlador();
+        int a = 1;
+        if (!usr.equals("") && !pass.equals("")) {
+
+            log.setUsuario(usr);
+            log.setPassword(pass);
+
+            if (lc.login(log)) {
+
+                JOptionPane.showMessageDialog(null, "Bienvenido Usuario");
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Vuelva a Ingresar sus Datos");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe de Ingresar sus Datos");
+        }
     }//GEN-LAST:event_btnLAceptarActionPerformed
 
     private void btnLCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLCancelarActionPerformed
@@ -152,16 +170,24 @@ public class FrmLogin extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
