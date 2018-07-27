@@ -1,12 +1,11 @@
 package control_salones.vista;
 
 import control_salones.controlador.SalonControlador;
-import control_salones.modelo.Salon;
 import javax.swing.SpinnerNumberModel;
 
-public class frm_ModificarSalon extends javax.swing.JFrame {
+public class frm_ConsultaSalon extends javax.swing.JFrame {
 
-    public frm_ModificarSalon() {
+    public frm_ConsultaSalon() {
         initComponents();
     }
 
@@ -39,15 +38,19 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         spnPcParticipantes = new javax.swing.JSpinner();
         jLabel11 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtObservaciones = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        txtLimpiar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Informacion del Salon"));
@@ -58,6 +61,7 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
 
         jLabel2.setText(" Nombre:");
 
+        txtNombre.setEditable(false);
         txtNombre.setText(" ");
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +70,8 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
         });
 
         jLabel4.setText("Capacidad:");
+
+        txtCapacidad.setEditable(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -100,10 +106,10 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(0, 42, Short.MAX_VALUE))
+                .addGap(0, 32, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 160));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, 150));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Equipamiento de Salones"));
         jPanel2.setToolTipText("");
@@ -150,67 +156,32 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
         jLabel11.setText("Observaciones:");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 126, -1, -1));
 
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 220, 170));
+
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("SALONES");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 230, 50));
+
+        txtObservaciones.setEditable(false);
         txtObservaciones.setColumns(20);
         txtObservaciones.setRows(5);
         jScrollPane2.setViewportView(txtObservaciones);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 146, 308, 126));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 308, 150));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 340, 290));
-
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("MODIFICACION DE SALONES");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 350, 50));
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Botones"));
-
-        btnGuardar.setText("Guardar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
-
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setText("Salir");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 270, 70, 40));
 
-        txtLimpiar.setText("Limpiar");
-        txtLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtLimpiarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(btnGuardar)
-                .addGap(38, 38, 38)
-                .addComponent(txtLimpiar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(btnCancelar)
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar)
-                    .addComponent(btnCancelar)
-                    .addComponent(txtLimpiar))
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 340, 80));
+        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("CONSULTA DE");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 230, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -219,41 +190,19 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtNombreActionPerformed
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        Salon salon = new Salon();
-        salon.setCodigo(Integer.parseInt(txtCodigo.getText()));
-        salon.setNombre_salon(txtNombre.getText());
-        salon.setCapacidad_salon(Integer.parseInt(txtCapacidad.getText()));
-        if (rdbPcIns1.isSelected()==true){
-            salon.setPc_instructor(1);
-        } else if (rdbPcIns0.isSelected()==true){
-            salon.setPc_instructor(0);
-        }
-        if (rdbPizarron1.isSelected()==true){
-            salon.setPizarron(1);
-        } else if (rdbPizarron0.isSelected()==true){
-            salon.setPizarron(0);
-        }
-        if (rdbProyector1.isSelected()==true){
-            salon.setProyector(1);
-        } else if (rdbProyector0.isSelected()==true){
-            salon.setProyector(0);
-        }
-        salon.setPc_participantes(spnPcParticipantes.getValue().toString());
-        salon.setObservaciones(txtObservaciones.getText());
-        sc.modificarSalon(salon);
-        
-    }//GEN-LAST:event_btnGuardarActionPerformed
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
             dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void txtLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLimpiarActionPerformed
-        txtCapacidad.setText("");
-        txtNombre.setText("");
-        txtObservaciones.setText("");
-        spnPcParticipantes.setValue(0);
-    }//GEN-LAST:event_txtLimpiarActionPerformed
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        rdbPcIns0.setEnabled(false);
+        rdbPcIns1.setEnabled(false);
+        rdbPizarron0.setEnabled(false);
+        rdbPizarron1.setEnabled(false);
+        rdbProyector0.setEnabled(false);
+        rdbProyector1.setEnabled(false);
+        spnPcParticipantes.setEnabled(false);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -272,20 +221,21 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frm_ModificarSalon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_ConsultaSalon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frm_ModificarSalon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_ConsultaSalon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frm_ModificarSalon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_ConsultaSalon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frm_ModificarSalon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_ConsultaSalon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frm_ModificarSalon().setVisible(true);
+                new frm_ConsultaSalon().setVisible(true);
             }
         });
     }
@@ -295,11 +245,11 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btgPizarron;
     private javax.swing.ButtonGroup btgProyector;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -307,7 +257,6 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JRadioButton rdbPcIns0;
     private javax.swing.JRadioButton rdbPcIns1;
@@ -318,7 +267,6 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
     private javax.swing.JSpinner spnPcParticipantes;
     private javax.swing.JTextField txtCapacidad;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JButton txtLimpiar;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextArea txtObservaciones;
     // End of variables declaration//GEN-END:variables

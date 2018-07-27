@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class SalonControlador {
@@ -29,7 +30,7 @@ public class SalonControlador {
         noEditable modelo = new noEditable();
         ResultSet st = con.consultarDatos(sql);
         modelo.setColumnIdentifiers(new Object[]{"Codigo Salon", "Nombre Salon", "Capacidad", "PC Instructor", "Proyector", "Pizarron", 
-            "PC Participantes", "Observaciones"});
+            "PC Participantes", "Observaciones(mas equipo)"});
         try {
             while (st.next()) {
                 modelo.addRow(new Object[]{st.getString("codigo"), st.getString("nombre_salon"), st.getString("capacidad_salon"), 
@@ -60,7 +61,7 @@ public class SalonControlador {
             ps.setString(6, salon.getPc_participantes());
             ps.setString(7, salon.getObservaciones());
             resultado = this.ps.executeUpdate();
-
+            JOptionPane.showMessageDialog(null,"Se agrego el salon");
         } catch (SQLException e) {
             con.mensajeError = e.getMessage();
             return false;

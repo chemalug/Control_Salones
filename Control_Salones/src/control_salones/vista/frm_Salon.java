@@ -50,6 +50,7 @@ public class frm_Salon extends javax.swing.JFrame {
         btnModificar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
+        btnConsulta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -67,6 +68,7 @@ public class frm_Salon extends javax.swing.JFrame {
 
             }
         ));
+        tblSalones.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblSalones);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -82,11 +84,11 @@ public class frm_Salon extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, 1050, 480));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, 1050, 520));
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -136,34 +138,37 @@ public class frm_Salon extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(43, 43, 43)
-                                .addComponent(jLabel8))
+                                .addComponent(jLabel11)
+                                .addGap(0, 233, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(rdbPcIns1)
                                 .addGap(7, 7, 7)
-                                .addComponent(rdbPcIns0)
-                                .addGap(31, 31, 31)
-                                .addComponent(rdbProyector1)
-                                .addGap(7, 7, 7)
-                                .addComponent(rdbProyector0))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(67, 67, 67)
-                                .addComponent(jLabel10))
+                                .addComponent(rdbPcIns0))
+                            .addComponent(jLabel9)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(rdbPizarron1)
                                 .addGap(7, 7, 7)
-                                .addComponent(rdbPizarron0)
-                                .addGap(31, 31, 31)
-                                .addComponent(spnPcParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel11))
-                        .addGap(0, 116, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(rdbPizarron0)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jLabel8))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(rdbProyector1)
+                                .addGap(7, 7, 7)
+                                .addComponent(rdbProyector0))
+                            .addComponent(jLabel10)
+                            .addComponent(spnPcParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(80, 80, 80))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,27 +176,29 @@ public class frm_Salon extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
+                        .addComponent(jLabel7)
                         .addGap(4, 4, 4)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rdbPcIns1)
-                            .addComponent(rdbPcIns0)
-                            .addComponent(rdbProyector1)
-                            .addComponent(rdbProyector0))
+                            .addComponent(rdbPcIns0))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10))
+                        .addComponent(jLabel9)
                         .addGap(6, 6, 6)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rdbPizarron1)
-                            .addComponent(rdbPizarron0))
-                        .addGap(13, 13, 13))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(spnPcParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                            .addComponent(rdbPizarron0)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel8)
+                            .addGap(4, 4, 4)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(rdbProyector1)
+                                .addComponent(rdbProyector0))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel10)
+                            .addGap(31, 31, 31))
+                        .addComponent(spnPcParticipantes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(11, 11, 11)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -216,6 +223,12 @@ public class frm_Salon extends javax.swing.JFrame {
         });
 
         jLabel4.setText("Capacidad:");
+
+        txtCapacidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCapacidadKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -285,19 +298,31 @@ public class frm_Salon extends javax.swing.JFrame {
             }
         });
 
+        btnConsulta.setText("Consulta");
+        btnConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnAgregar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnModificar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBorrar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnActualizar)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnAgregar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnModificar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBorrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnActualizar))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addComponent(btnConsulta)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -309,10 +334,12 @@ public class frm_Salon extends javax.swing.JFrame {
                     .addComponent(btnModificar)
                     .addComponent(btnBorrar)
                     .addComponent(btnActualizar))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnConsulta)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 350, 80));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 350, 110));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -377,6 +404,7 @@ public class frm_Salon extends javax.swing.JFrame {
         String pizarron = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),5));
         String pc_participantes = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),6));
         String otros_equipos = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),7));
+        
         frm_ModificarSalon modificar = new frm_ModificarSalon();
         modificar.setTxtCodigo(codigo);
         modificar.setTxtNombre(nombre_salon);
@@ -389,17 +417,55 @@ public class frm_Salon extends javax.swing.JFrame {
             modificar.setrdbProyector1();
         } else if ("0".equals(proyector))
             modificar.setrdbProyector0();
-        modificar.setVisible(true);
         if ("1".equals(pizarron)){
             modificar.setrdbPizarron1();
         } else if ("0".equals(pizarron))
             modificar.setrdbPizarron0();
-        modificar.setVisible(true);
         modificar.setspnPcParticipantes(Integer.parseInt(pc_participantes));
         modificar.setTxtObservaciones(otros_equipos);
-        
+        modificar.setVisible(true);
         
     }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
+        String codigo = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),0));
+        String nombre_salon = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),1));
+        String capacidad_salon = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),2));
+        String pc_instructor = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),3));
+        String proyector = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),4));
+        String pizarron = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),5));
+        String pc_participantes = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),6));
+        String otros_equipos = String.valueOf(tblSalones.getValueAt(tblSalones.getSelectedRow(),7));
+        frm_ConsultaSalon consulta = new frm_ConsultaSalon();
+        consulta.setTxtCodigo(codigo);
+        consulta.setTxtNombre(nombre_salon);
+        consulta.setTxtCapacidad(capacidad_salon);
+        if ("1".equals(pc_instructor)){
+            consulta.setrdbPcIns1();
+        } else if ("0".equals(pc_instructor))
+            consulta.setrdbPcIns0();
+        if ("1".equals(proyector)){
+            consulta.setrdbProyector1();
+        } else if ("0".equals(proyector))
+            consulta.setrdbProyector0();
+        if ("1".equals(pizarron)){
+            consulta.setrdbPizarron1();
+        } else if ("0".equals(pizarron))
+            consulta.setrdbPizarron0();
+        consulta.setspnPcParticipantes(Integer.parseInt(pc_participantes));
+        consulta.setTxtObservaciones(otros_equipos);
+        consulta.setVisible(true);
+    }//GEN-LAST:event_btnConsultaActionPerformed
+
+    private void txtCapacidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCapacidadKeyTyped
+        char car = evt.getKeyChar();
+        if((car<'0' || car>'9')) evt.consume();
+        
+        String caracteres = txtCapacidad.getText();
+        if(caracteres.length()>=2){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCapacidadKeyTyped
 
     /**
      * @param args the command line arguments
@@ -443,6 +509,7 @@ public class frm_Salon extends javax.swing.JFrame {
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBorrar;
+    private javax.swing.JButton btnConsulta;
     private javax.swing.JButton btnModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
