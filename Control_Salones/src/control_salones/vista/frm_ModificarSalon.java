@@ -242,6 +242,7 @@ public class frm_ModificarSalon extends javax.swing.JFrame {
         salon.setPc_participantes(spnPcParticipantes.getValue().toString());
         salon.setObservaciones(txtObservaciones.getText());
         sc.modificarSalon(salon);
+        dispose();
         
     }//GEN-LAST:event_btnGuardarActionPerformed
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
